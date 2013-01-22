@@ -3,7 +3,7 @@
 Class Type {
 
     public $var;
-    public $varName = "";
+    public $varName;
     public $varAsString = "";
 
     public function __construct() {
@@ -13,7 +13,7 @@ Class Type {
         if ($this->varName != "") {  // 
             echo $this->varName;     // @todo not here
             echo ': ';               //
-        }
+        } echo '0**';
     }
 
 }
