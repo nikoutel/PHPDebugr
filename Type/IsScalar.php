@@ -9,10 +9,10 @@ Class Type_IsScalar extends Type {
 
     public function send($output) {
         if ($this->varAsString == "")
-            $output->echoOut($this->var);
+            $output->outputScalar($this->var);
 
         else
-            $output->echoOut($this->varAsString);
+            $output->outputScalar($this->varAsString);
     }
 
 }

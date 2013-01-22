@@ -2,7 +2,7 @@
 
 Class Output_OutputScreen extends Output {
 
-    public function echoOut($var) {
+    public function outputScalar($var) {
         // parent::__construct();
         echo '<pre>';
         echo $var;
@@ -10,7 +10,7 @@ Class Output_OutputScreen extends Output {
         echo '</pre>';
     }
 
-    public function varDumpOut($var) {
+    public function outputComposite($var) {
         //  parent::__construct();
         echo '<pre>';
         var_dump($var);
