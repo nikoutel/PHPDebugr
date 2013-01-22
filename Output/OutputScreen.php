@@ -2,19 +2,36 @@
 
 Class Output_OutputScreen extends Output {
 
-    public function outputScalar($var) {
-        // parent::__construct();
+    public $debugVar;
+    public $debugText;
+
+    public function outputScalar($debugVar, $debugText) {
+        $this->debugVar = $debugVar;
+        $this->debugText = $debugText;
+
+        if ($this->debugText != "") {
+            $pre = $this->debugText . ': ';
+        }else
+            $pre = "";
+
         echo '<pre>';
-        echo $var;
-        echo '<br />';
+        echo $pre;
+        echo $this->debugVar;
         echo '</pre>';
     }
 
-    public function outputComposite($var) {
-        //  parent::__construct();
+    public function outputComposite($debugVar, $debugText) {
+        $this->debugVar = $debugVar;
+        $this->debugText = $debugText;
+
+        if ($this->debugText != "") {
+            $pre = $this->debugText . ':<br />';
+        }else
+            $pre = "";
+
         echo '<pre>';
-        var_dump($var);
-        echo '<br />';
+        echo $pre;
+        var_dump($this->debugVar);
         echo '</pre>';
     }
 
