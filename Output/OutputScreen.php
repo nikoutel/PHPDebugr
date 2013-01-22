@@ -1,6 +1,6 @@
 <?php
 
-Class Output_OutputPrint extends Output {
+Class Output_OutputScreen extends Output {
 
     public function echoOut($var) {
         // parent::__construct();
