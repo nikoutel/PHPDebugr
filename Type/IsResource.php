@@ -2,9 +2,9 @@
 
 Class Type_IsResource extends Type_IsComposite {
 
-    public function __construct($outObj) {
+    public function __construct($output) {
         parent::__construct();
-        $this->out($outObj);
+        $this->send($output);
     }
 
 }

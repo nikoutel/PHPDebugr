@@ -26,9 +26,9 @@ Class Debugr {
         $type = str_replace(" ", "", $type);
         $type = 'Type_Is' . $type;
 
-        $outObj = new Output_OutputPrint();
+        $output = new Output_OutputPrint();
 
-        $typeObj = new $type($outObj);
+        $typeObj = new $type($output);
         return $typeObj;
     }
 

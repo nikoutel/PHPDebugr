@@ -4,15 +4,15 @@ Class Type_IsScalar extends Type {
 
     public function __construct() {
         parent::__construct();
-        //  $this->out($outObj);
+        //  $this->out($output);
     }
 
-    public function out($outObj) {
+    public function send($output) {
         if ($this->varAsString == "")
-            $outObj->echoOut($this->var);
+            $output->echoOut($this->var);
 
         else
-            $outObj->echoOut($this->varAsString);
+            $output->echoOut($this->varAsString);
     }
 
 }

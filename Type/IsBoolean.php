@@ -4,7 +4,7 @@ Class Type_IsBoolean extends Type_IsScalar {
 
     public $varAsString = ".";
 
-    public function __construct($outObj) {
+    public function __construct($output) {
         parent::__construct();
         if ($this->var) {
 
@@ -13,7 +13,7 @@ Class Type_IsBoolean extends Type_IsScalar {
 
             $this->varAsString = 'FALSE';
         }
-        $this->out($outObj);
+        $this->send($output);
     }
 
 }
