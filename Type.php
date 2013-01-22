@@ -2,18 +2,18 @@
 
 Class Type {
 
-    public $var;
-    public $varName;
-    public $varAsString = "";
+    public $debugVar;
+    public $debugText;
+    public $debugVarAsString = "";
 
     public function __construct() {
-        $this->var = Debugr::$var;
-        $this->varName = Debugr::$varName;
+        $this->debugVar = Debugr::$debugVar;
+        $this->debugText = Debugr::$debugText;
 
-        if ($this->varName != "") {  // 
-            echo $this->varName;     // @todo not here
+        if ($this->debugText != "") {  // 
+            echo $this->debugText;     // @todo not here
             echo ': ';               //
-        } echo '0**';
+        }
     }
 
 }

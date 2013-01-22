@@ -4,8 +4,8 @@ Class Type_IsNull extends Type_IsScalar {
 
     public function __construct($output) {
         parent::__construct();
-        if ($this->var === null)
-            $this->varAsString = 'NULL';
+        if ($this->debugVar === null)
+            $this->debugVarAsString = 'NULL';
 
         $this->send($output);
     }

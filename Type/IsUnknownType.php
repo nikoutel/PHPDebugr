@@ -6,7 +6,7 @@ Class Type_IsUnknownType extends Type_IsScalar {
         parent::__construct();
 
         // if ($this->getVar() === null)
-        $this->varAsString = 'Unknown Type';
+        $this->debugVarAsString = 'Unknown Type';
         $this->send($output);
         //$output->echoOut($outMsg);
     }

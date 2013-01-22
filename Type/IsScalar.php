@@ -8,11 +8,11 @@ Class Type_IsScalar extends Type {
     }
 
     public function send($output) {
-        if ($this->varAsString == "")
-            $output->outputScalar($this->var);
+        if ($this->debugVarAsString == "")
+            $output->outputScalar($this->debugVar);
 
         else
-            $output->outputScalar($this->varAsString);
+            $output->outputScalar($this->debugVarAsString);
     }
 
 }

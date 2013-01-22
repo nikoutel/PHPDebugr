@@ -6,12 +6,12 @@ Class Type_IsBoolean extends Type_IsScalar {
 
     public function __construct($output) {
         parent::__construct();
-        if ($this->var) {
+        if ($this->debugVar) {
 
-            $this->varAsString = 'TRUE';
+            $this->debugVarAsString = 'TRUE';
         } else {
 
-            $this->varAsString = 'FALSE';
+            $this->debugVarAsString = 'FALSE';
         }
         $this->send($output);
     }

@@ -9,20 +9,20 @@
 
 Class Debugr {
 
-    public static $var;
-    public static $varName;
+    public static $debugVar;
+    public static $debugText;
 
-    public static function eDbg($var, $varName = "") {
+    public static function eDbg($debugVar, $debugText = "") {
         // if DBG or LOG...
-        self::eDbgPrint($var, $varName);
+        self::eDbgPrint($debugVar, $debugText);
     }
 
-    public static function eDbgPrint($var, $varName = "") {
+    public static function eDbgPrint($debugVar, $debugText = "") {
 
-        self::$var = $var;
-        self::$varName = $varName;
+        self::$debugVar = $debugVar;
+        self::$debugText = $debugText;
 
-        $type = ucwords(strtolower(gettype(self::$var)));
+        $type = ucwords(strtolower(gettype(self::$debugVar)));
         $type = str_replace(" ", "", $type);
         $type = 'Type_Is' . $type;
 
@@ -32,7 +32,7 @@ Class Debugr {
         return $typeObj;
     }
 
-    public static function eDbgLog($var, $varName = "") {
+    public static function eDbgLog($debugVar, $debugText = "") {
         
     }
 
