@@ -14,10 +14,10 @@ Class Debugr {
 
     public static function eDbg($debugVar, $debugText = "") {
         // if DBG or LOG...
-        self::eDbgPrint($debugVar, $debugText);
+        self::eDbgScreen($debugVar, $debugText);
     }
 
-    public static function eDbgPrint($debugVar, $debugText = "") {
+    public static function eDbgScreen($debugVar, $debugText = "") {
 
         self::$debugVar = $debugVar;
         self::$debugText = $debugText;
