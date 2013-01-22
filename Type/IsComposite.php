@@ -2,8 +2,8 @@
 
 Class Type_IsComposite extends Type {
 
-    public function __construct($outObj) {
-        parent::__construct($outObj);
+    public function __construct() {
+        parent::__construct();
         // $outObj->varDumpOut($this->var);
     }
 

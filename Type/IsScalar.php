@@ -2,8 +2,8 @@
 
 Class Type_IsScalar extends Type {
 
-    public function __construct($outObj) {
-        parent::__construct($outObj);
+    public function __construct() {
+        parent::__construct();
         //  $this->out($outObj);
     }
 
