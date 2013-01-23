@@ -1,6 +1,6 @@
 <?php
 
-Class Type_IsNull extends Type_IsScalar {
+Class Type_IsNull extends Type_IsScalar { // Technicaly type NULL is not scalar but ...
 
     public function __construct($output) {
         parent::__construct();

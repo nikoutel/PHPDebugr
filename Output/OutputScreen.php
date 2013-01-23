@@ -4,18 +4,22 @@ Class Output_OutputScreen extends Output {
 
     public $debugVar;
     public $debugText;
+    
+    public function __construct() {
+        //parent::__construct();
+    }
 
     public function outputScalar($debugVar, $debugText) {
         $this->debugVar = $debugVar;
         $this->debugText = $debugText;
 
         if ($this->debugText != "") {
-            $pre = $this->debugText . ': ';
+            $prefix = $this->debugText . ': ';
         }else
-            $pre = "";
+            $prefix = "";
 
         echo '<pre>';
-        echo $pre;
+        echo $prefix;
         echo $this->debugVar;
         echo '</pre>';
     }
@@ -25,12 +29,12 @@ Class Output_OutputScreen extends Output {
         $this->debugText = $debugText;
 
         if ($this->debugText != "") {
-            $pre = $this->debugText . ':<br />';
+            $prefix = $this->debugText . ':<br />';
         }else
-            $pre = "";
+            $prefix = "";
 
         echo '<pre>';
-        echo $pre;
+        echo $prefix;
         var_dump($this->debugVar);
         echo '</pre>';
     }

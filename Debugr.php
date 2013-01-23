@@ -18,23 +18,28 @@ Class Debugr {
         $methodName = 'eDbg' . $out;
         self::$methodName($debugVar, $debugText);
     }
-    /** can be called directly **/
+
+    /** can be called directly * */
     public static function eDbgScreen($debugVar, $debugText = "") {
 
         self::$debugVar = $debugVar;
         self::$debugText = $debugText;
 
         $type = self::getDebugVarType(self::$debugVar);
+
         $output = new Output_OutputScreen();
         $typeObj = new $type($output);
         return $typeObj;
     }
-    /** can be called directly **/
+
+    /** can be called directly * */
     public static function eDbgLog($debugVar, $debugText = "") {
+
         self::$debugVar = $debugVar;
         self::$debugText = $debugText;
 
         $type = self::getDebugVarType(self::$debugVar);
+
         $output = new Output_OutputLog();
         $typeObj = new $type($output);
         return $typeObj;
