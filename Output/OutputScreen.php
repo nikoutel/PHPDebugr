@@ -1,6 +1,6 @@
 <?php
 
-Class Output_OutputScreen extends Output {
+Class Output_OutputScreen implements  Output {
 
     public $debugVar;
     public $debugText;

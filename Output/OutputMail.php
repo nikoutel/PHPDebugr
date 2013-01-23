@@ -1,9 +1,13 @@
 <?php
 
-Class Output_OutputMail extends Output {
+Class Output_OutputMail implements  Output {
 
-    public function mailOut() {
+    public function outputScalar($debugVar, $debugText){
+       echo  'sending scalar mail';
         
+    }
+    public function outputComposite($debugVar, $debugText){
+       echo ' sending composite mail';
     }
 
 }

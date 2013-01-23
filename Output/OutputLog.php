@@ -1,6 +1,6 @@
 <?php
 
-Class Output_OutputLog extends Output {
+Class Output_OutputLog implements  Output {
     
     const FILENAME = "output.log";
 

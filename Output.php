@@ -1,11 +1,9 @@
 <?php
 
-Class Output {
+interface Output {
 
-    public function __construct() {
-
-        //if
-    }
+    public function outputScalar($debugVar, $debugText);
+    public function outputComposite($debugVar, $debugText);
 
 }
 

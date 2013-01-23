@@ -38,6 +38,17 @@ Class Debugr {
         $typeObj = new $type($output);
         return $typeObj;
     }
+    public static function eDbgMail($debugVar, $debugText = "") {
+
+        self::$debugVar = $debugVar;
+        self::$debugText = $debugText;
+
+        $type = self::getDebugVarType(self::$debugVar);
+
+        $output = new Output_OutputMail();
+        $typeObj = new $type($output);
+        return $typeObj;
+    }
 
     public static function getDebugVarType($debugVar) {
         $type = ucwords(strtolower(gettype($debugVar)));
