@@ -4,9 +4,14 @@ Class Output_OutputScreen implements  Output {
 
     public $debugVar;
     public $debugText;
+    public $options;
     
-    public function __construct() {
+    public function __construct($options) {
         //parent::__construct();
+        $this->options = $options;
+        $optstr = '$opt = PrintOptions::' . $options . ';';
+        eval( $optstr); // SECURITY
+        echo $opt;
     }
 
     public function outputScalar($debugVar, $debugText) {

@@ -4,12 +4,13 @@ Class Debugr {
 
     public static $debugVar;
     public static $debugText;
+    public static $options;
 
-    public static function eDbg($debugVar, $debugText = "") {
+    public static function eDbg($debugVar, $debugText = "", $options = "e") {
 
 
         $defaultOut = OutputOptions::Screen; // {Screen, Log, Mail}
-        self::_eDbgOut($debugVar, $debugText, $defaultOut);
+        self::_eDbgOut($debugVar, $debugText, $options, $defaultOut);
     }
     
     /** can be called directly * */
@@ -30,15 +31,16 @@ Class Debugr {
         self::_eDbgOut($debugVar, $debugText, 'Mail');
     }
 
-    private static function _eDbgOut($debugVar, $debugText, $out) {
+    private static function _eDbgOut($debugVar, $debugText, $options, $out) {
         
         self::$debugVar = $debugVar;
         self::$debugText = $debugText;
+        //self::$options = $options;
 
         $type = self::getDebugVarType(self::$debugVar);
         $output = 'Output_Output'.$out;
 
-        $output = new $output;
+        $output = new $output($options);
         $typeObj = new $type($output);
         return $typeObj;
     }
