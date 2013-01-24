@@ -2,15 +2,15 @@
 
 Class Debugr {
 
-    public static $debugVar;
+    public static $debugVar; 
     public static $debugText;
     public static $options;
 
-    public static function eDbg($debugVar, $debugText = "", $options = "e") {
-
+    public static function eDbg($debugVar, $debugText = "", $option = "") { // @todo var names
+        //@todo check options
 
         $defaultOut = OutputOptions::Screen; // {Screen, Log, Mail}
-        self::_eDbgOut($debugVar, $debugText, $options, $defaultOut);
+        self::_eDbgOut($debugVar, $debugText, $option, $defaultOut);
     }
     
     /** can be called directly * */

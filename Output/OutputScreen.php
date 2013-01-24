@@ -1,20 +1,26 @@
 <?php
 
-Class Output_OutputScreen implements  Output {
+Class Output_OutputScreen implements Output {
 
     public $debugVar;
     public $debugText;
-    public $options;
-    
-    public function __construct($options) {
+    public $option;
+
+    public function __construct($optionParam) {
         //parent::__construct();
-        $this->options = $options;
-        $optstr = '$opt = PrintOptions::' . $options . ';';
-        eval( $optstr); // SECURITY
-        echo $opt;
+
+        if ($optionParam != '') {
+           // @todo isInBitFild();
+            $optstr = '$option = PrintOptions::' . $optionParam . ';'; // @todo array?
+            eval($optstr); // @todo SECURITY
+            $this->option = $option;
+        }
     }
 
-    public function outputScalar($debugVar, $debugText) {
+    public function outputScalar($debugVar, $debugText, $opt) {
+        if ($this -> option == '') $print=$opt;
+        else $print = $this->option;
+        echo $print;
         $this->debugVar = $debugVar;
         $this->debugText = $debugText;
 
@@ -25,7 +31,7 @@ Class Output_OutputScreen implements  Output {
 
         echo '<pre>';
         echo $prefix;
-        echo $this->debugVar;
+        PrintO::$print($this->debugVar) ;
         echo '</pre>';
     }
 
