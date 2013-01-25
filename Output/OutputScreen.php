@@ -7,25 +7,21 @@ Class Output_OutputScreen implements Output {
     public $printOption;
     public $defaultPrintOptionScalar = 'echos';
     public $defaultPrintOptionComposite = 'varDump';
+    public $printOut;
 
-    public function __construct($printOptionFlag) {
-        
-      //  $this->printOption = getPrintOption($printOptionFlag);
+    public function __construct($printOptionFlag, $po) {
 
-        if ($printOptionFlag != '') {
-           // @todo isInBitFild();
-            $optstr = '$option = PrintOptions::' . $printOptionFlag . ';'; // @todo array?
-            eval($optstr); // @todo SECURITY
-            $this->printOption = $option;
-        }
+        $this->printOut = $po;
+        $this->printOption = $po->getPrintOption($printOptionFlag);
     }
 
     public function outputScalar($debugVar, $debugText) {
-        
-        if ($this -> printOption == '')  $this->printOption = $this->defaultPrintOptionScalar;
-              
-        $print = $this->printOption;
-        
+
+        if ($this->printOption == '')
+            $this->printOption = $this->defaultPrintOptionScalar;
+
+        $printMethod = $this->printOption;
+
         $this->debugVar = $debugVar;
         $this->debugText = $debugText;
 
@@ -36,16 +32,17 @@ Class Output_OutputScreen implements Output {
 
         echo '<pre>';
         echo $prefix;
-        PrintO::$print($this->debugVar) ;
+        $this->printOut->$printMethod($this->debugVar); // PrintOut::$printMethod
         echo '</pre>';
     }
 
     public function outputComposite($debugVar, $debugText) {
-        
-        if ($this -> printOption == '')  $this->printOption = $this->defaultPrintOptionComposite;
-        
-        $print = $this->printOption;
-        
+
+        if ($this->printOption == '')
+            $this->printOption = $this->defaultPrintOptionComposite;
+
+        $printMethod = $this->printOption;
+
         $this->debugVar = $debugVar;
         $this->debugText = $debugText;
 
@@ -56,7 +53,7 @@ Class Output_OutputScreen implements Output {
 
         echo '<pre>';
         echo $prefix;
-        PrintO::$print($this->debugVar) ;
+        $this->printOut->$printMethod($this->debugVar);
         echo '</pre>';
     }
 

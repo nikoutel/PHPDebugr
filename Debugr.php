@@ -38,7 +38,8 @@ Class Debugr {
         $type = self::getClassNameByType(self::$debugVar);
         $output = 'Output_Output' . $out;
 
-        $output = new $output($printOption);
+        $pr = new PrintOut();
+        $output = new $output($printOption, $pr);
         $typeObj = new $type($output);
         return $typeObj; //@todo ?
     }
