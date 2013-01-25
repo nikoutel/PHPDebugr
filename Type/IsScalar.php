@@ -1,6 +1,8 @@
 <?php
 
 Class Type_IsScalar extends Type {
+    
+    public $defaultPrintOption = 'echos';
 
     public function __construct() {
         parent::__construct();
@@ -9,10 +11,10 @@ Class Type_IsScalar extends Type {
 
     public function send($output) {
         if ($this->debugVarAsString == "")
-            $output->outputScalar($this->debugVar, $this->debugText , 'echos');// @todo var defaultOPtion
+            $output->outputScalar($this->debugVar, $this->debugText , $this->defaultPrintOption);
 
         else
-            $output->outputScalar($this->debugVarAsString, $this->debugText);
+            $output->outputScalar($this->debugVarAsString, $this->debugText, $this->defaultPrintOption);
     }
 
 }
