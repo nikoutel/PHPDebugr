@@ -2,8 +2,8 @@
 
 interface Output {
 
-    public function outputScalar($debugVar, $debugText, $printOption);
-    public function outputComposite($debugVar, $debugText, $printOption);
+    public function outputScalar($debugVar, $debugText);
+    public function outputComposite($debugVar, $debugText);
 
 }
 

@@ -1,8 +1,6 @@
 <?php
 
 Class Type_IsComposite extends Type {
-    
-    public $defaultPrintOption = 'varDump';
 
     public function __construct() {
         parent::__construct();
@@ -10,7 +8,7 @@ Class Type_IsComposite extends Type {
     }
 
     public function send($output) {
-        $output->outputComposite($this->debugVar, $this->debugText, $this->defaultPrintOption);
+        $output->outputComposite($this->debugVar, $this->debugText);
     }
 
 }

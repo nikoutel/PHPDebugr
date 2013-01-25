@@ -8,6 +8,8 @@ Class Output_OutputLog implements  Output {
     public $debugText;
     public $printOption;
     private $preText;
+    public $defaultPrintOptionScalar = 'echos';
+    public $defaultPrintOptionComposite = 'varDump';
     
     public function __construct($printOptionFlag) {
 
@@ -26,9 +28,9 @@ Class Output_OutputLog implements  Output {
         return $this->preText;
     }
 
-    public function outputScalar($debugVar, $debugText, $printOption) {
+    public function outputScalar($debugVar, $debugText) {
         
-        if ($this -> printOption == '') $this->printOption=$printOption;
+        if ($this -> printOption == '')  $this->printOption = $this->defaultPrintOptionScalar;
         
         $print = $this->printOption;
         
@@ -50,9 +52,9 @@ Class Output_OutputLog implements  Output {
         file_put_contents(self::FILENAME, $result, FILE_APPEND);
     }
 
-    public function outputComposite($debugVar, $debugText, $printOption) {
+    public function outputComposite($debugVar, $debugText) {
         
-        if ($this -> printOption == '') $this->printOption=$printOption;
+        if ($this -> printOption == '')  $this->printOption = $this->defaultPrintOptionComposite;
         
         $print = $this->printOption;
         

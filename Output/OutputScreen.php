@@ -5,6 +5,8 @@ Class Output_OutputScreen implements Output {
     public $debugVar;
     public $debugText;
     public $printOption;
+    public $defaultPrintOptionScalar = 'echos';
+    public $defaultPrintOptionComposite = 'varDump';
 
     public function __construct($printOptionFlag) {
         
@@ -18,10 +20,10 @@ Class Output_OutputScreen implements Output {
         }
     }
 
-    public function outputScalar($debugVar, $debugText, $printOption) {
+    public function outputScalar($debugVar, $debugText) {
         
-        if ($this -> printOption == '') $this->printOption=$printOption;
-        
+        if ($this -> printOption == '')  $this->printOption = $this->defaultPrintOptionScalar;
+              
         $print = $this->printOption;
         
         $this->debugVar = $debugVar;
@@ -38,9 +40,9 @@ Class Output_OutputScreen implements Output {
         echo '</pre>';
     }
 
-    public function outputComposite($debugVar, $debugText, $printOption) {
+    public function outputComposite($debugVar, $debugText) {
         
-        if ($this -> printOption == '') $this->printOption=$printOption;
+        if ($this -> printOption == '')  $this->printOption = $this->defaultPrintOptionComposite;
         
         $print = $this->printOption;
         

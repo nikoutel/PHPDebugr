@@ -5,6 +5,8 @@ abstract Class Output_OutputMail implements  Output {
     public $debugVar;
     public $debugText;
     public $printOption;
+    public $defaultPrintOptionScalar = 'echos';
+    public $defaultPrintOptionComposite = 'varDump';
     
     public function __construct($printOptionFlag) {
 
@@ -16,8 +18,8 @@ abstract Class Output_OutputMail implements  Output {
         }
     }
 
-    public abstract function outputScalar($debugVar, $debugText, $printOption);
-    public abstract function outputComposite($debugVar, $debugText, $printOption);
+    public abstract function outputScalar($debugVar, $debugText);
+    public abstract function outputComposite($debugVar, $debugText);
 
 }
 
