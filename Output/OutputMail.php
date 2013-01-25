@@ -1,14 +1,24 @@
 <?php
 
-Class Output_OutputMail implements  Output {
+abstract Class Output_OutputMail implements  Output {
+    
+    public $debugVar;
+    public $debugText;
+    public $printOption;
+    
+    public function __construct($printOptionFlag) {
+        //parent::__construct();
 
-    public function outputScalar($debugVar, $debugText){
-       echo  'sending scalar mail';
-        
+        if ($printOptionFlag != '') {
+           // @todo isInBitFild();
+            $optstr = '$option = PrintOptions::' . $printOptionFlag . ';'; // @todo array?
+            eval($optstr); // @todo SECURITY
+            $this->printOption = $option;
+        }
     }
-    public function outputComposite($debugVar, $debugText){
-       echo ' sending composite mail';
-    }
+
+    public abstract function outputScalar($debugVar, $debugText, $printOption);
+    public abstract function outputComposite($debugVar, $debugText, $printOption);
 
 }
 

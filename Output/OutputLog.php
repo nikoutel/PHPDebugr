@@ -6,10 +6,18 @@ Class Output_OutputLog implements  Output {
 
     public $debugVar;
     public $debugText;
+    public $printOption;
     private $preText;
     
-    public function __construct() {
+    public function __construct($printOptionFlag) {
         //parent::__construct();
+
+        if ($printOptionFlag != '') {
+           // @todo isInBitFild();
+            $optstr = '$option = PrintOptions::' . $printOptionFlag . ';'; // @todo array?
+            eval($optstr); // @todo SECURITY
+            $this->printOption = $option;
+        }
     }
     
     public function getPreText(){
@@ -19,7 +27,11 @@ Class Output_OutputLog implements  Output {
         return $this->preText;
     }
 
-    public function outputScalar($debugVar, $debugText) {
+    public function outputScalar($debugVar, $debugText, $printOption) {
+        
+        if ($this -> printOption == '') $print=$printOption;
+        else $print = $this->printOption;
+        
         $this->debugVar = $debugVar;
         $this->debugText = $debugText;
         
@@ -32,13 +44,17 @@ Class Output_OutputLog implements  Output {
         echo "\n";
         echo $this->getPreText();
         echo $prefix;
-        echo $this->debugVar;
+        PrintO::$print($this->debugVar) ;
         echo "\n\n";
         $result = ob_get_clean();
         file_put_contents(self::FILENAME, $result, FILE_APPEND);
     }
 
-    public function outputComposite($debugVar, $debugText) {
+    public function outputComposite($debugVar, $debugText, $printOption) {
+        
+        if ($this -> printOption == '') $print=$printOption;
+        else $print = $this->printOption;
+        
         $this->debugVar = $debugVar;
         $this->debugText = $debugText;
         
@@ -51,7 +67,7 @@ Class Output_OutputLog implements  Output {
         echo "\n";
         echo $this->getPreText();
         echo $prefix;
-        var_dump($this->debugVar);
+        PrintO::$print($this->debugVar) ;
         echo "\n";
         $result = ob_get_clean();
         file_put_contents(self::FILENAME, $result, FILE_APPEND);
