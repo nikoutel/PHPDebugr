@@ -6,9 +6,7 @@ final Class PrintOptions {
     const v = 'varDump';
     const r = 'printR';
     const c = 'custom';
-    
 
-    //const Mail = 'Mail';
 
     private function __construct() {
         

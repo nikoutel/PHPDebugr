@@ -7,6 +7,8 @@ Class Output_OutputScreen implements Output {
     public $printOption;
 
     public function __construct($printOptionFlag) {
+        
+      //  $this->printOption = getPrintOption($printOptionFlag);
 
         if ($printOptionFlag != '') {
            // @todo isInBitFild();
@@ -18,9 +20,9 @@ Class Output_OutputScreen implements Output {
 
     public function outputScalar($debugVar, $debugText, $printOption) {
         
-        if ($this -> printOption == '') $print=$printOption;
-        else $print = $this->printOption;
-        echo $print;
+        if ($this -> printOption == '') $this->printOption=$printOption;
+        
+        $print = $this->printOption;
         
         $this->debugVar = $debugVar;
         $this->debugText = $debugText;
@@ -38,8 +40,9 @@ Class Output_OutputScreen implements Output {
 
     public function outputComposite($debugVar, $debugText, $printOption) {
         
-        if ($this -> printOption == '') $print=$printOption;
-        else $print = $this->printOption;
+        if ($this -> printOption == '') $this->printOption=$printOption;
+        
+        $print = $this->printOption;
         
         $this->debugVar = $debugVar;
         $this->debugText = $debugText;

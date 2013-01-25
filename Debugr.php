@@ -5,32 +5,32 @@ Class Debugr {
     public static $debugVar;
     public static $debugText;
 
-    public static function eDbg($debugVar, $debugText = "", $printOptions = "") {
+    public static function eDbg($debugVar, $debugText = "", $printOption = "") {
 
 
-        $defaultOut = OutputOptions::Log; // {Screen, Log, Mail}
-        self::_eDbgOut($debugVar, $debugText, $printOptions, $defaultOut);
+        $defaultOut = OutputOptions::Screen; // {Screen, Log, Mail}
+        self::_eDbgOut($debugVar, $debugText, $printOption, $defaultOut);
     }
 
     /** can be called directly * */
-    public static function eDbgScreen($debugVar, $debugText = "", $printOptions = "") {
+    public static function eDbgScreen($debugVar, $debugText = "", $printOption = "") {
 
-        self::_eDbgOut($debugVar, $debugText, $printOptions, 'Screen');
+        self::_eDbgOut($debugVar, $debugText, $printOption, 'Screen');
     }
 
     /** can be called directly * */
-    public static function eDbgLog($debugVar, $debugText = "", $printOptions = "") {
+    public static function eDbgLog($debugVar, $debugText = "", $printOption = "") {
 
-        self::_eDbgOut($debugVar, $debugText, $printOptions, 'Log');
+        self::_eDbgOut($debugVar, $debugText, $printOption, 'Log');
     }
 
     /** can be called directly * */
-    public static function eDbgMail($debugVar, $debugText = "", $printOptions = "") {
+    public static function eDbgMail($debugVar, $debugText = "", $printOption = "") {
 
-        self::_eDbgOut($debugVar, $debugText, $printOptions, 'Mail');
+        self::_eDbgOut($debugVar, $debugText, $printOption, 'Mail');
     }
 
-    private static function _eDbgOut($debugVar, $debugText, $printOptions, $out) {
+    private static function _eDbgOut($debugVar, $debugText, $printOption, $out) {
 
         self::$debugVar = $debugVar;
         self::$debugText = $debugText;
@@ -38,7 +38,7 @@ Class Debugr {
         $type = self::getClassNameByType(self::$debugVar);
         $output = 'Output_Output' . $out;
 
-        $output = new $output($printOptions);
+        $output = new $output($printOption);
         $typeObj = new $type($output);
         return $typeObj;
     }
