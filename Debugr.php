@@ -40,7 +40,7 @@ Class Debugr {
 
         $output = new $output($printOption);
         $typeObj = new $type($output);
-        return $typeObj;
+        return $typeObj; //@todo ?
     }
 
     public static function getClassNameByType($debugVar) {

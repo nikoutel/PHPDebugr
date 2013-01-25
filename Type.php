@@ -1,6 +1,6 @@
 <?php
 
-Class Type {
+Class Type { // @todo abstract
 
     public $debugVar;
     public $debugText;
