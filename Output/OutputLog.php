@@ -10,7 +10,6 @@ Class Output_OutputLog implements  Output {
     private $preText;
     
     public function __construct($printOptionFlag) {
-        //parent::__construct();
 
         if ($printOptionFlag != '') {
            // @todo isInBitFild();

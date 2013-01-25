@@ -7,7 +7,6 @@ abstract Class Output_OutputMail implements  Output {
     public $printOption;
     
     public function __construct($printOptionFlag) {
-        //parent::__construct();
 
         if ($printOptionFlag != '') {
            // @todo isInBitFild();

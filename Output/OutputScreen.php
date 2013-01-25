@@ -7,7 +7,6 @@ Class Output_OutputScreen implements Output {
     public $printOption;
 
     public function __construct($printOptionFlag) {
-        //parent::__construct();
 
         if ($printOptionFlag != '') {
            // @todo isInBitFild();
@@ -56,9 +55,6 @@ Class Output_OutputScreen implements Output {
         echo '</pre>';
     }
 
-//    public function printROut() {
-//        
-//    }
 }
 
 ?>
