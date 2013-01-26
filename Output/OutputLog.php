@@ -1,27 +1,27 @@
 <?php
 
-Class Output_OutputLog implements  Output {
-    
+Class Output_OutputLog implements Output {
+
     const FILENAME = "output.log";
 
     public $debugVar;
     public $debugText;
-    public $printOption;
+    public $writeMethod;
     private $preText;
-    public $defaultPrintOptionScalar = 'echos';
-    public $defaultPrintOptionComposite = 'varDump';
-    
-    public function __construct($printOptionFlag) {
+    public $defaultWriteMethodScalar = 'echos';
+    public $defaultWriteMethodComposite = 'varDump';
 
-        if ($printOptionFlag != '') {
-           // @todo isInBitFild();
-            $optstr = '$option = PrintOptions::' . $printOptionFlag . ';'; // @todo array?
-            eval($optstr); // @todo SECURITY
-            $this->printOption = $option;
+    public function __construct($writeOptionFlag, $writer) {
+
+        $this->writer = $writer;
+        try {
+            $this->writeMethod = $this->writer->getWriteMethod($writeOptionFlag);
+        } catch (Exception $exc) {
+            echo 'valid: {e,v,r,c}'; //@todo error msg
         }
     }
-    
-    public function getPreText(){
+
+    public function getPreText() {
         $timestamp = date('d/m/Y H:i:s');
         $requestFile = $_SERVER['REQUEST_URI'];
         $this->preText = '(' . $timestamp . ') ' . $requestFile . "\n";
@@ -29,14 +29,15 @@ Class Output_OutputLog implements  Output {
     }
 
     public function outputScalar($debugVar, $debugText) {
-        
-        if ($this -> printOption == '')  $this->printOption = $this->defaultPrintOptionScalar;
-        
-        $print = $this->printOption;
-        
+
+        if ($this->writeMethod == '')
+            $this->writeMethod = $this->defaultWriteMethodScalar;
+
+        $writeOut = $this->writeMethod;
+
         $this->debugVar = $debugVar;
         $this->debugText = $debugText;
-        
+
         if ($this->debugText != "") {
             $prefix = $this->debugText . ": ";
         }else
@@ -46,21 +47,22 @@ Class Output_OutputLog implements  Output {
         echo "\n";
         echo $this->getPreText();
         echo $prefix;
-        PrintO::$print($this->debugVar) ;
+        $this->writer->$writeOut($this->debugVar);
         echo "\n\n";
         $result = ob_get_clean();
         file_put_contents(self::FILENAME, $result, FILE_APPEND);
     }
 
     public function outputComposite($debugVar, $debugText) {
-        
-        if ($this -> printOption == '')  $this->printOption = $this->defaultPrintOptionComposite;
-        
-        $print = $this->printOption;
-        
+
+        if ($this->writeMethod == '')
+            $this->writeMethod = $this->defaultWriteMethodComposite;
+
+        $writeOut = $this->writeMethod;
+
         $this->debugVar = $debugVar;
         $this->debugText = $debugText;
-        
+
         if ($this->debugText != "") {
             $prefix = $this->debugText . ":\n ";
         }else
@@ -70,7 +72,7 @@ Class Output_OutputLog implements  Output {
         echo "\n";
         echo $this->getPreText();
         echo $prefix;
-        PrintO::$print($this->debugVar) ;
+        $this->writer->$writeOut($this->debugVar);
         echo "\n";
         $result = ob_get_clean();
         file_put_contents(self::FILENAME, $result, FILE_APPEND);
