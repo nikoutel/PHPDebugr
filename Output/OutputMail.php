@@ -4,17 +4,17 @@ abstract Class Output_OutputMail implements  Output {
     
     public $debugVar;
     public $debugText;
-    public $printOption;
-    public $defaultPrintOptionScalar = 'echos';
-    public $defaultPrintOptionComposite = 'varDump';
+    public $writeMethod;
+    public $defaultWriteMethodScalar = 'echos';
+    public $defaultWriteMethodComposite = 'varDump';
     
-    public function __construct($printOptionFlag) {
+    public function __construct($writeOptionFlag, $writer) {
 
-        if ($printOptionFlag != '') {
-           // @todo isInBitFild();
-            $optstr = '$option = PrintOptions::' . $printOptionFlag . ';'; // @todo array?
-            eval($optstr); // @todo SECURITY
-            $this->printOption = $option;
+        $this->writer = $writer;
+        try {
+            $this->writeMethod = $this->writer->getWriteMethod($writeOptionFlag);
+        } catch (Exception $exc) {
+            echo 'valid: {e,v,r,c}'; //@todo error msg
         }
     }
 

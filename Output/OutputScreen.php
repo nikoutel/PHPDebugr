@@ -4,23 +4,27 @@ Class Output_OutputScreen implements Output {
 
     public $debugVar;
     public $debugText;
-    public $printOption;
-    public $defaultPrintOptionScalar = 'echos';
-    public $defaultPrintOptionComposite = 'varDump';
-    public $printOut;
+    public $writeMethod;
+    public $defaultWriteMethodScalar = 'echos';
+    public $defaultWriteMethodComposite = 'varDump';
+    public $writer;
 
-    public function __construct($printOptionFlag, $po) {
+    public function __construct($writeOptionFlag, $writer) {
 
-        $this->printOut = $po;
-        $this->printOption = $po->getPrintOption($printOptionFlag);
+        $this->writer = $writer;
+        try {
+            $this->writeMethod = $this->writer->getWriteMethod($writeOptionFlag);
+        } catch (Exception $exc) {
+            echo 'valid: {e,v,r,c}'; //@todo error msg
+        }
     }
 
     public function outputScalar($debugVar, $debugText) {
 
-        if ($this->printOption == '')
-            $this->printOption = $this->defaultPrintOptionScalar;
+        if ($this->writeMethod == '')
+            $this->writeMethod = $this->defaultWriteMethodScalar;
 
-        $printMethod = $this->printOption;
+        $writeOut = $this->writeMethod;
 
         $this->debugVar = $debugVar;
         $this->debugText = $debugText;
@@ -32,16 +36,16 @@ Class Output_OutputScreen implements Output {
 
         echo '<pre>';
         echo $prefix;
-        $this->printOut->$printMethod($this->debugVar); // PrintOut::$printMethod
+        $this->writer->$writeOut($this->debugVar); // PrintOut::$printMethod
         echo '</pre>';
     }
 
     public function outputComposite($debugVar, $debugText) {
 
-        if ($this->printOption == '')
-            $this->printOption = $this->defaultPrintOptionComposite;
+        if ($this->writeMethod == '')
+            $this->writeMethod = $this->defaultWriteMethodComposite;
 
-        $printMethod = $this->printOption;
+        $writeOut = $this->writeMethod;
 
         $this->debugVar = $debugVar;
         $this->debugText = $debugText;
@@ -53,7 +57,7 @@ Class Output_OutputScreen implements Output {
 
         echo '<pre>';
         echo $prefix;
-        $this->printOut->$printMethod($this->debugVar);
+        $this->writer->$writeOut($this->debugVar);
         echo '</pre>';
     }
 

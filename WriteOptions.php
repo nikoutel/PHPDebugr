@@ -1,6 +1,6 @@
 <?php
 
-final Class PrintOptions {
+final Class WriteOptions {
 
     const e = 'echos';
     const v = 'varDump';

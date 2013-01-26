@@ -5,32 +5,32 @@ Class Debugr {
     public static $debugVar;
     public static $debugText;
 
-    public static function eDbg($debugVar, $debugText = "", $printOption = "") {
+    public static function eDbg($debugVar, $debugText = "", $writeOption = "") {
 
 
         $defaultOut = OutputOptions::Screen; // {Screen, Log, Mail}
-        self::_eDbgOut($debugVar, $debugText, $printOption, $defaultOut);
+        self::_eDbgOut($debugVar, $debugText, $writeOption, $defaultOut);
     }
 
     /** can be called directly * */
-    public static function eDbgScreen($debugVar, $debugText = "", $printOption = "") {
+    public static function eDbgScreen($debugVar, $debugText = "", $writeOption = "") {
 
-        self::_eDbgOut($debugVar, $debugText, $printOption, 'Screen');
+        self::_eDbgOut($debugVar, $debugText, $writeOption, 'Screen');
     }
 
     /** can be called directly * */
-    public static function eDbgLog($debugVar, $debugText = "", $printOption = "") {
+    public static function eDbgLog($debugVar, $debugText = "", $writeOption = "") {
 
-        self::_eDbgOut($debugVar, $debugText, $printOption, 'Log');
+        self::_eDbgOut($debugVar, $debugText, $writeOption, 'Log');
     }
 
     /** can be called directly * */
-    public static function eDbgMail($debugVar, $debugText = "", $printOption = "") {
+    public static function eDbgMail($debugVar, $debugText = "", $writeOption = "") {
 
-        self::_eDbgOut($debugVar, $debugText, $printOption, 'Mail');
+        self::_eDbgOut($debugVar, $debugText, $writeOption, 'Mail');
     }
 
-    private static function _eDbgOut($debugVar, $debugText, $printOption, $out) {
+    private static function _eDbgOut($debugVar, $debugText, $writeOption, $out) {
 
         self::$debugVar = $debugVar;
         self::$debugText = $debugText;
@@ -38,8 +38,8 @@ Class Debugr {
         $type = self::getClassNameByType(self::$debugVar);
         $output = 'Output_Output' . $out;
 
-        $pr = new PrintOut();
-        $output = new $output($printOption, $pr);
+        $writer = new Writer();
+        $output = new $output($writeOption, $writer);
         $typeObj = new $type($output);
         return $typeObj; //@todo ?
     }
