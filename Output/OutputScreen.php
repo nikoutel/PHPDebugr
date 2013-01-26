@@ -1,15 +1,31 @@
 <?php
 
-Class Output_OutputScreen implements  Output {
+Class Output_OutputScreen implements Output {
 
     public $debugVar;
     public $debugText;
-    
-    public function __construct() {
-        //parent::__construct();
+    public $writeMethod;
+    public $defaultWriteMethodScalar = 'echos';
+    public $defaultWriteMethodComposite = 'varDump';
+    public $writer;
+
+    public function __construct($writeOptionFlag, $writer) {
+
+        $this->writer = $writer;
+        try {
+            $this->writeMethod = $this->writer->getWriteMethod($writeOptionFlag);
+        } catch (Exception $exc) {
+            echo 'valid: {e,v,r,c}'; //@todo error msg
+        }
     }
 
     public function outputScalar($debugVar, $debugText) {
+
+        if ($this->writeMethod == '')
+            $this->writeMethod = $this->defaultWriteMethodScalar;
+
+        $writeOut = $this->writeMethod;
+
         $this->debugVar = $debugVar;
         $this->debugText = $debugText;
 
@@ -20,11 +36,17 @@ Class Output_OutputScreen implements  Output {
 
         echo '<pre>';
         echo $prefix;
-        echo $this->debugVar;
+        $this->writer->$writeOut($this->debugVar); // PrintOut::$printMethod
         echo '</pre>';
     }
 
     public function outputComposite($debugVar, $debugText) {
+
+        if ($this->writeMethod == '')
+            $this->writeMethod = $this->defaultWriteMethodComposite;
+
+        $writeOut = $this->writeMethod;
+
         $this->debugVar = $debugVar;
         $this->debugText = $debugText;
 
@@ -35,13 +57,10 @@ Class Output_OutputScreen implements  Output {
 
         echo '<pre>';
         echo $prefix;
-        var_dump($this->debugVar);
+        $this->writer->$writeOut($this->debugVar);
         echo '</pre>';
     }
 
-//    public function printROut() {
-//        
-//    }
 }
 
 ?>

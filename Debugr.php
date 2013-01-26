@@ -5,45 +5,46 @@ Class Debugr {
     public static $debugVar;
     public static $debugText;
 
-    public static function eDbg($debugVar, $debugText = "") {
+    public static function eDbg($debugVar, $debugText = "", $writeOption = "") {
 
 
         $defaultOut = OutputOptions::Screen; // {Screen, Log, Mail}
-        self::_eDbgOut($debugVar, $debugText, $defaultOut);
-    }
-    
-    /** can be called directly * */
-    public static function eDbgScreen($debugVar, $debugText = "") {
-
-        self::_eDbgOut($debugVar, $debugText, 'Screen');
+        self::_eDbgOut($debugVar, $debugText, $writeOption, $defaultOut);
     }
 
     /** can be called directly * */
-    public static function eDbgLog($debugVar, $debugText = "") {
+    public static function eDbgScreen($debugVar, $debugText = "", $writeOption = "") {
 
-        self::_eDbgOut($debugVar, $debugText, 'Log');
+        self::_eDbgOut($debugVar, $debugText, $writeOption, 'Screen');
     }
-    
+
     /** can be called directly * */
-    public static function eDbgMail($debugVar, $debugText = "") {
+    public static function eDbgLog($debugVar, $debugText = "", $writeOption = "") {
 
-        self::_eDbgOut($debugVar, $debugText, 'Mail');
+        self::_eDbgOut($debugVar, $debugText, $writeOption, 'Log');
     }
 
-    private static function _eDbgOut($debugVar, $debugText, $out) {
-        
+    /** can be called directly * */
+    public static function eDbgMail($debugVar, $debugText = "", $writeOption = "") {
+
+        self::_eDbgOut($debugVar, $debugText, $writeOption, 'Mail');
+    }
+
+    private static function _eDbgOut($debugVar, $debugText, $writeOption, $out) {
+
         self::$debugVar = $debugVar;
         self::$debugText = $debugText;
 
-        $type = self::getDebugVarType(self::$debugVar);
-        $output = 'Output_Output'.$out;
+        $type = self::getClassNameByType(self::$debugVar);
+        $output = 'Output_Output' . $out;
 
-        $output = new $output;
+        $writer = new Writer();
+        $output = new $output($writeOption, $writer);
         $typeObj = new $type($output);
-        return $typeObj;
+        return $typeObj; //@todo ?
     }
-    
-    public static function getDebugVarType($debugVar) {
+
+    public static function getClassNameByType($debugVar) {
         $type = ucwords(strtolower(gettype($debugVar)));
         $type = str_replace(" ", "", $type);
         $type = 'Type_Is' . $type;
