@@ -9,7 +9,7 @@ Class Output_OutputScreen implements Output {
     public $defaultWriteMethodComposite = 'varDump';
     public $writer;
 
-    public function __construct($writeOptionFlag, $writer) {
+    public function __construct($writeOptionFlag, Writer $writer) {
 
         $this->writer = $writer;
         try {

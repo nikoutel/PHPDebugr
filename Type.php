@@ -1,6 +1,6 @@
 <?php
 
-abstract Class Type { // @todo abstract
+abstract Class Type { 
 
     public $debugVar;
     public $debugText;
@@ -11,7 +11,7 @@ abstract Class Type { // @todo abstract
         $this->debugText = Debugr::getDebugText();
 
     }
-    abstract public  function send($output);
+    abstract public  function send(Output $output);
 }
 
 ?>

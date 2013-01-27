@@ -7,7 +7,7 @@ Class Type_IsScalar extends Type {
         //  $this->out($output);
     }
 
-    public function send($output) {
+    public function send(Output $output) {
         if ($this->debugVarAsString == "")
             $output->outputScalar($this->debugVar, $this->debugText);
 

@@ -7,7 +7,7 @@ Class Type_IsComposite extends Type {
         // $output->varDumpOut($this->var);
     }
 
-    public function send($output) {
+    public function send(Output $output) {
         $output->outputComposite($this->debugVar, $this->debugText);
     }
 

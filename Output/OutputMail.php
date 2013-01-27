@@ -8,7 +8,7 @@ abstract Class Output_OutputMail implements  Output {
     public $defaultWriteMethodScalar = 'echos';
     public $defaultWriteMethodComposite = 'varDump';
     
-    public function __construct($writeOptionFlag, $writer) {
+    public function __construct($writeOptionFlag, Writer $writer) {
 
         $this->writer = $writer;
         try {
