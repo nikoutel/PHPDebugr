@@ -7,8 +7,8 @@ Class Type { // @todo abstract
     public $debugVarAsString = "";
 
     public function __construct() {
-        $this->debugVar = Debugr::$debugVar; // @todo getter;
-        $this->debugText = Debugr::$debugText;
+        $this->debugVar = Debugr::getDebugVar(); // @todo getter;
+        $this->debugText = Debugr::getDebugText();
 
     }
 
