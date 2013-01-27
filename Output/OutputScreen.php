@@ -5,12 +5,17 @@ Class Output_OutputScreen implements Output {
     public $debugVar;
     public $debugText;
     public $writeMethod;
-    public $defaultWriteMethodScalar = 'echos';
+    public $defaultWriteMethodScalar ; //'echos';
     public $defaultWriteMethodComposite = 'varDump';
     public $writer;
+    
+    public function set(){
+        
+    }
 
     public function __construct($writeOptionFlag, Writer $writer) {
-
+        
+        $this->defaultWriteMethodScalar = config::$config['defaultWriteMethodScalar']['Screen'];
         $this->writer = $writer;
         try {
             $this->writeMethod = $this->writer->getWriteMethod($writeOptionFlag);
