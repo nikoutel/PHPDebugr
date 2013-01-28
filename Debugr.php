@@ -2,14 +2,22 @@
 
 Class Debugr {
 
-    public static $debugVar;
-    public static $debugText;
+    private static $_debugVar;
+    private static $_debugText;
+
+    public static function getDebugVar() {
+        return self::$_debugVar;
+    }
+
+    public static function getDebugText() {
+        return self::$_debugText;
+    }
 
     public static function eDbg($debugVar, $debugText = "", $writeOption = "") {
 
 
-        $defaultOut = OutputOptions::Screen; // {Screen, Log, Mail}
-        self::_eDbgOut($debugVar, $debugText, $writeOption, $defaultOut);
+        $defaultOutput = config::$config['defaultOutput']; // {Screen, Log, Mail}
+        self::_eDbgOut($debugVar, $debugText, $writeOption, $defaultOutput);
     }
 
     /** can be called directly * */
@@ -30,21 +38,21 @@ Class Debugr {
         self::_eDbgOut($debugVar, $debugText, $writeOption, 'Mail');
     }
 
-    private static function _eDbgOut($debugVar, $debugText, $writeOption, $out) {
+    private static function _eDbgOut($debugVar, $debugText, $writeOption, $outputOption) {
 
-        self::$debugVar = $debugVar;
-        self::$debugText = $debugText;
+        self::$_debugVar = $debugVar;
+        self::$_debugText = $debugText;
 
-        $type = self::getClassNameByType(self::$debugVar);
-        $output = 'Output_Output' . $out;
+        $typeCl = self::_getClassNameByType(self::$_debugVar);
+        $outputCl = 'Output_Output' . $outputOption;
 
         $writer = new Writer();
-        $output = new $output($writeOption, $writer);
-        $typeObj = new $type($output);
+        $output = new $outputCl($writeOption, $writer);
+        $typeObj = new $typeCl($output);
         return $typeObj; //@todo ?
     }
 
-    public static function getClassNameByType($debugVar) {
+    private static function _getClassNameByType($debugVar) {
         $type = ucwords(strtolower(gettype($debugVar)));
         $type = str_replace(" ", "", $type);
         $type = 'Type_Is' . $type;
