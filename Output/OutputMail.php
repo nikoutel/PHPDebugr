@@ -2,17 +2,18 @@
 
 abstract Class Output_OutputMail implements  Output {
     
-    public $debugVar;
-    public $debugText;
-    public $writeMethod;
-    public $defaultWriteMethodScalar;
-    public $defaultWriteMethodComposite;
+    private $_debugVar;
+    private $_debugText;
+    private $_writeMethod;
+    private $_defaultWriteMethodScalar;
+    private $_defaultWriteMethodComposite;
+    private $_writer;
     
     public function __construct($writeOptionFlag, Writer $writer) {
 
-        $this->writer = $writer;
+        $this->_writer = $writer;
         try {
-            $this->writeMethod = $this->writer->getWriteMethod($writeOptionFlag);
+            $this->_writeMethod = $this->_writer->getWriteMethod($writeOptionFlag);
         } catch (Exception $exc) {
             echo 'valid: {e,v,r,c}'; //@todo error msg
         }

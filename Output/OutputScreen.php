@@ -2,22 +2,19 @@
 
 Class Output_OutputScreen implements Output {
 
-    public $debugVar;
-    public $debugText;
-    public $writeMethod;
-    public $defaultWriteMethodScalar; //'echos';
-    public $defaultWriteMethodComposite;
-    public $writer;
+    private $_debugVar;
+    private $_debugText;
+    private $_writeMethod;
+    private $_defaultWriteMethodScalar;
+    private $_defaultWriteMethodComposite;
+    private $_writer;
 
-    public function set() {
-        
-    }
 
     public function __construct($writeOptionFlag, Writer $writer) {
 
-        $this->writer = $writer;
+        $this->_writer = $writer;
         try {
-            $this->writeMethod = $this->writer->getWriteMethod($writeOptionFlag);
+            $this->_writeMethod = $this->_writer->getWriteMethod($writeOptionFlag);
         } catch (Exception $exc) {
             echo 'valid: {e,v,r,c}'; //@todo error msg
         }
@@ -25,45 +22,45 @@ Class Output_OutputScreen implements Output {
 
     public function outputScalar($debugVar, $debugText) {
         
-        $this->defaultWriteMethodScalar = config::$config['defaultWriteMethodScalar']['Screen'];
-        if ($this->writeMethod == '')
-            $this->writeMethod = $this->defaultWriteMethodScalar;
+        $this->_defaultWriteMethodScalar = config::$config['defaultWriteMethodScalar']['Screen'];
+        if ($this->_writeMethod == '')
+            $this->_writeMethod = $this->_defaultWriteMethodScalar;
 
-        $writeOut = $this->writeMethod;
+        $writeOut = $this->_writeMethod;
 
-        $this->debugVar = $debugVar;
-        $this->debugText = $debugText;
+        $this->_debugVar = $debugVar;
+        $this->_debugText = $debugText;
 
-        if ($this->debugText != "") {
-            $prefix = $this->debugText . ': ';
+        if ($this->_debugText != "") {
+            $prefix = $this->_debugText . ': ';
         }else
             $prefix = "";
 
         echo '<pre>';
         echo $prefix;
-        $this->writer->$writeOut($this->debugVar);
+        $this->_writer->$writeOut($this->_debugVar);
         echo '</pre>';
     }
 
     public function outputComposite($debugVar, $debugText) {
 
-        $this->defaultWriteMethodComposite = config::$config['defaultWriteMethodComposite']['Screen'];
-        if ($this->writeMethod == '')
-            $this->writeMethod = $this->defaultWriteMethodComposite;
+        $this->_defaultWriteMethodComposite = config::$config['defaultWriteMethodComposite']['Screen'];
+        if ($this->_writeMethod == '')
+            $this->_writeMethod = $this->_defaultWriteMethodComposite;
 
-        $writeOut = $this->writeMethod;
+        $writeOut = $this->_writeMethod;
 
-        $this->debugVar = $debugVar;
-        $this->debugText = $debugText;
+        $this->_debugVar = $debugVar;
+        $this->_debugText = $debugText;
 
-        if ($this->debugText != "") {
-            $prefix = $this->debugText . ':<br />';
+        if ($this->_debugText != "") {
+            $prefix = $this->_debugText . ':<br />';
         }else
             $prefix = "";
 
         echo '<pre>';
         echo $prefix;
-        $this->writer->$writeOut($this->debugVar);
+        $this->_writer->$writeOut($this->_debugVar);
         echo '</pre>';
     }
 

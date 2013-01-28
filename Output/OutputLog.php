@@ -2,82 +2,83 @@
 
 Class Output_OutputLog implements Output {
 
-    public $debugVar;
-    public $debugText;
-    public $writeMethod;
-    private $preText;
-    public $defaultWriteMethodScalar;
-    public $defaultWriteMethodComposite;
-    public $filename;
+    private $_debugVar;
+    private $_debugText;
+    private $_writeMethod;
+    private $_defaultWriteMethodScalar;
+    private $_defaultWriteMethodComposite;
+    private $_writer;
+    private $_preText;
+    private $_filename;
 
     public function __construct($writeOptionFlag, Writer $writer) {
 
-        $this->writer = $writer;
+        $this->_writer = $writer;
         try {
-            $this->writeMethod = $this->writer->getWriteMethod($writeOptionFlag);
+            $this->_writeMethod = $this->_writer->getWriteMethod($writeOptionFlag);
         } catch (Exception $exc) {
             echo 'valid: {e,v,r,c}'; //@todo error msg
         }
-        $this->filename =  config::$config['logFile'];
+        $this->_filename = config::$config['logFile'];
     }
 
-    public function getPreText() {
+    private function _getPreText() {
         $timestamp = date('d/m/Y H:i:s');
         $requestFile = $_SERVER['REQUEST_URI'];
-        $this->preText = '(' . $timestamp . ') ' . $requestFile . "\n";
-        return $this->preText;
+        $this->_preText = '(' . $timestamp . ') ' . $requestFile . "\n";
+        return $this->_preText;
     }
 
     public function outputScalar($debugVar, $debugText) {
 
-        $this->defaultWriteMethodScalar = config::$config['defaultWriteMethodScalar']['Log'];
-        if ($this->writeMethod == '')
-            $this->writeMethod = $this->defaultWriteMethodScalar;
+        $this->_defaultWriteMethodScalar = config::$config['defaultWriteMethodScalar']['Log'];
+        if ($this->_writeMethod == '')
+            $this->_writeMethod = $this->_defaultWriteMethodScalar;
 
-        $writeOut = $this->writeMethod;
+        $writeOut = $this->_writeMethod;
 
-        $this->debugVar = $debugVar;
-        $this->debugText = $debugText;
+        $this->_debugVar = $debugVar;
+        $this->_debugText = $debugText;
 
-        if ($this->debugText != "") {
-            $prefix = $this->debugText . ": ";
+        if ($this->_debugText != "") {
+            $prefix = $this->_debugText . ": ";
         }else
             $prefix = "";
 
         ob_start();
         echo "\n";
-        echo $this->getPreText();
+        echo $this->_getPreText();
         echo $prefix;
-        $this->writer->$writeOut($this->debugVar);
+        $this->_writer->$writeOut($this->_debugVar);
         echo "\n\n";
         $result = ob_get_clean();
-        file_put_contents($this->filename, $result, FILE_APPEND);
+        file_put_contents($this->_filename, $result, FILE_APPEND);
     }
 
     public function outputComposite($debugVar, $debugText) {
 
-        $this->defaultWriteMethodComposite = config::$config['defaultWriteMethodComposite']['Log'];
-        if ($this->writeMethod == '')
-            $this->writeMethod = $this->defaultWriteMethodComposite;
+        $this->_defaultWriteMethodComposite = config::$config['defaultWriteMethodComposite']['Log'];
+        if ($this->_writeMethod == '')
+            $this->_writeMethod = $this->_defaultWriteMethodComposite;
 
-        $writeOut = $this->writeMethod;
+        $writeOut = $this->_writeMethod;
 
-        $this->debugVar = $debugVar;
-        $this->debugText = $debugText;
+        $this->_debugVar = $debugVar;
+        $this->_debugText = $debugText;
 
-        if ($this->debugText != "") {
-            $prefix = $this->debugText . ":\n ";
+        if ($this->_debugText != "") {
+            $prefix = $this->_debugText . ":\n ";
         }else
             $prefix = "";
 
         ob_start();
         echo "\n";
-        echo $this->getPreText();
+        echo $this->_getPreText();
         echo $prefix;
-        $this->writer->$writeOut($this->debugVar);
+        $this->_writer->$writeOut($this->_debugVar);
         echo "\n";
         $result = ob_get_clean();
-        file_put_contents($this->filename, $result, FILE_APPEND);
+        file_put_contents($this->_filename, $result, FILE_APPEND);
     }
 
 }

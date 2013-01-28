@@ -2,12 +2,12 @@
 
 abstract Class Type { 
 
-    public $debugVar;
-    public $debugText;
+    protected $_debugVar;
+    protected $_debugText;
 
     public function __construct() {
-        $this->debugVar = Debugr::getDebugVar();
-        $this->debugText = Debugr::getDebugText();
+        $this->_debugVar = Debugr::getDebugVar();
+        $this->_debugText = Debugr::getDebugText();
 
     }
     abstract public  function send(Output $output);
