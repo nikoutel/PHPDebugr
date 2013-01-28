@@ -5,17 +5,16 @@ Class Output_OutputScreen implements Output {
     public $debugVar;
     public $debugText;
     public $writeMethod;
-    public $defaultWriteMethodScalar ; //'echos';
-    public $defaultWriteMethodComposite = 'varDump';
+    public $defaultWriteMethodScalar; //'echos';
+    public $defaultWriteMethodComposite;
     public $writer;
-    
-    public function set(){
+
+    public function set() {
         
     }
 
     public function __construct($writeOptionFlag, Writer $writer) {
-        
-        $this->defaultWriteMethodScalar = config::$config['defaultWriteMethodScalar']['Screen'];
+
         $this->writer = $writer;
         try {
             $this->writeMethod = $this->writer->getWriteMethod($writeOptionFlag);
@@ -25,7 +24,8 @@ Class Output_OutputScreen implements Output {
     }
 
     public function outputScalar($debugVar, $debugText) {
-
+        
+        $this->defaultWriteMethodScalar = config::$config['defaultWriteMethodScalar']['Screen'];
         if ($this->writeMethod == '')
             $this->writeMethod = $this->defaultWriteMethodScalar;
 
@@ -41,12 +41,13 @@ Class Output_OutputScreen implements Output {
 
         echo '<pre>';
         echo $prefix;
-        $this->writer->$writeOut($this->debugVar); // PrintOut::$printMethod
+        $this->writer->$writeOut($this->debugVar);
         echo '</pre>';
     }
 
     public function outputComposite($debugVar, $debugText) {
 
+        $this->defaultWriteMethodComposite = config::$config['defaultWriteMethodComposite']['Screen'];
         if ($this->writeMethod == '')
             $this->writeMethod = $this->defaultWriteMethodComposite;
 

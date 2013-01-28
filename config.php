@@ -4,7 +4,7 @@ class config {
 
     public static $config = array(
         'logFile' => 'output.log',
-        'defaultOutput' => OutputOptions::Screen,
+        'defaultOutput' => OutputOptions::Log,
         'defaultWriteMethodScalar' => array(
             'Screen' => WriteOptions::echos,
             'Log' => WriteOptions::echos,

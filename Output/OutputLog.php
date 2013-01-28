@@ -2,14 +2,13 @@
 
 Class Output_OutputLog implements Output {
 
-    const FILENAME = "output.log";
-
     public $debugVar;
     public $debugText;
     public $writeMethod;
     private $preText;
-    public $defaultWriteMethodScalar = 'echos';
-    public $defaultWriteMethodComposite = 'varDump';
+    public $defaultWriteMethodScalar;
+    public $defaultWriteMethodComposite;
+    public $filename;
 
     public function __construct($writeOptionFlag, Writer $writer) {
 
@@ -19,6 +18,7 @@ Class Output_OutputLog implements Output {
         } catch (Exception $exc) {
             echo 'valid: {e,v,r,c}'; //@todo error msg
         }
+        $this->filename =  config::$config['logFile'];
     }
 
     public function getPreText() {
@@ -30,6 +30,7 @@ Class Output_OutputLog implements Output {
 
     public function outputScalar($debugVar, $debugText) {
 
+        $this->defaultWriteMethodScalar = config::$config['defaultWriteMethodScalar']['Log'];
         if ($this->writeMethod == '')
             $this->writeMethod = $this->defaultWriteMethodScalar;
 
@@ -50,11 +51,12 @@ Class Output_OutputLog implements Output {
         $this->writer->$writeOut($this->debugVar);
         echo "\n\n";
         $result = ob_get_clean();
-        file_put_contents(self::FILENAME, $result, FILE_APPEND);
+        file_put_contents($this->filename, $result, FILE_APPEND);
     }
 
     public function outputComposite($debugVar, $debugText) {
 
+        $this->defaultWriteMethodComposite = config::$config['defaultWriteMethodComposite']['Log'];
         if ($this->writeMethod == '')
             $this->writeMethod = $this->defaultWriteMethodComposite;
 
@@ -75,7 +77,7 @@ Class Output_OutputLog implements Output {
         $this->writer->$writeOut($this->debugVar);
         echo "\n";
         $result = ob_get_clean();
-        file_put_contents(self::FILENAME, $result, FILE_APPEND);
+        file_put_contents($this->filename, $result, FILE_APPEND);
     }
 
 }
