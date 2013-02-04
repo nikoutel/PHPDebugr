@@ -8,12 +8,12 @@ class config {
         'defaultWriteMethodScalar' => array(
             'Screen' => WriteOptions::echos,
             'Log' => WriteOptions::echos,
-            'Mail' => WriteOptions::echos
+            'FireBug' => WriteOptions::echos
         ),
         'defaultWriteMethodComposite' => array(
             'Screen' => WriteOptions::varDump,
             'Log' => WriteOptions::varDump,
-            'Mail' => WriteOptions::varDump
+            'FireBug' => WriteOptions::varDump
         )
     );
 }
