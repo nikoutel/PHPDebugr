@@ -9,19 +9,18 @@ Class Output_OutputScreen implements Output {
     private $_defaultWriteMethodComposite;
     private $_writer;
 
-
     public function __construct($writeOptionFlag, Writer $writer) {
 
         $this->_writer = $writer;
         try {
             $this->_writeMethod = $this->_writer->getWriteMethod($writeOptionFlag);
-        } catch (Exception $exc) {
-            echo 'valid: {e,v,r,c}'; //@todo error msg
+        } catch (Exception $e) {
+            echo "Caught " . $e->getMessage();//'valid: {e,v,r,c} dafault used'; //@todo error msg
         }
     }
 
     public function outputScalar($debugVar, $debugText) {
-        
+
         $this->_defaultWriteMethodScalar = config::$config['defaultWriteMethodScalar']['Screen'];
         if ($this->_writeMethod == '')
             $this->_writeMethod = $this->_defaultWriteMethodScalar;
