@@ -1,6 +1,6 @@
 <?php
 
-Class Output_OutputScreen implements Output {
+Class Output_OutputScreen implements Output { //@todo remove _Output
 
     private $_debugVar;
     private $_debugText;

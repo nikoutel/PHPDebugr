@@ -1,6 +1,6 @@
 <?php
 
-final Class  OutputOptions {
+final Class  OutputOptions { // @todo add None, Disable
     
     const Screen = 'Screen';
     const Log = 'Log';

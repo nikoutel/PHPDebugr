@@ -1,6 +1,6 @@
 <?php
 
-Class Debugr {
+Class Debugr { // @todo add include file with autoload
 
     private static $_debugVar;
     private static $_debugText;
@@ -43,7 +43,7 @@ Class Debugr {
         self::$_debugVar = $debugVar;
         self::$_debugText = $debugText;
 
-        $typeCl = self::_getClassNameByType(self::$_debugVar); // isType
+        $typeCl = self::_getClassNameByType(self::$_debugVar); // @todo rename isType
         $outputCl = 'Output_Output' . $outputOption;
 
         $writer = new Writer();
