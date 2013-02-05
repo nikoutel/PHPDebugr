@@ -20,7 +20,10 @@ Class Writer {
                 eval($optstr);
                 return $option;
             } else {
-                throw new InvalidArgumentException('valid: ' . implode(",", array_keys($bitArray)) . ' dafault used');
+                $errorMsg = 'Invalid argument - ';
+                $errorMsg .= 'valid options: [' . implode(", ", array_keys($bitArray)). '] - ';
+                $errorMsg .= 'Default used';
+                throw new InvalidArgumentException($errorMsg);
             }
         }
     }

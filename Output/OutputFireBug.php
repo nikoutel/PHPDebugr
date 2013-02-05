@@ -14,8 +14,8 @@ Class Output_OutputFireBug implements Output {
         $this->_writer = $writer;
         try {
             $this->_writeMethod = $this->_writer->getWriteMethod($writeOptionFlag);
-        } catch (Exception $exc) {
-            echo 'valid: {e,v,r,c}'; //@todo error msg
+        } catch (Exception $e) {
+            echo $e->getMessage();
         }
     }
 

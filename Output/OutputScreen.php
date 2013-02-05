@@ -15,7 +15,7 @@ Class Output_OutputScreen implements Output {
         try {
             $this->_writeMethod = $this->_writer->getWriteMethod($writeOptionFlag);
         } catch (Exception $e) {
-            echo "Caught " . $e->getMessage();//'valid: {e,v,r,c} dafault used'; //@todo error msg
+            echo $e->getMessage();
         }
     }
 
