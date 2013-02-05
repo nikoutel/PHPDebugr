@@ -33,9 +33,9 @@ Class Debugr {
     }
 
     /** can be called directly * */
-    public static function eDbgMail($debugVar, $debugText = "", $writeOption = "") {
+    public static function eDbgFB($debugVar, $debugText = "", $writeOption = "") {
 
-        self::_eDbgOut($debugVar, $debugText, $writeOption, 'Mail');
+        self::_eDbgOut($debugVar, $debugText, $writeOption, 'FireBug');
     }
 
     private static function _eDbgOut($debugVar, $debugText, $writeOption, $outputOption) {
@@ -43,12 +43,12 @@ Class Debugr {
         self::$_debugVar = $debugVar;
         self::$_debugText = $debugText;
 
-        $typeCl = self::_getClassNameByType(self::$_debugVar);
+        $typeCl = self::_getClassNameByType(self::$_debugVar); // isType
         $outputCl = 'Output_Output' . $outputOption;
 
         $writer = new Writer();
-        $output = new $outputCl($writeOption, $writer);
-        $typeObj = new $typeCl($output);
+        $output = new $outputCl($writeOption, $writer); 
+        $typeObj = new $typeCl($output); 
         return $typeObj; //@todo ?
     }
 
