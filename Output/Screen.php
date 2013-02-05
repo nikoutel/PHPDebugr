@@ -1,6 +1,6 @@
 <?php
 
-Class Output_OutputConsole implements Output {
+Class Output_Screen implements Output {
 
     private $_debugVar;
     private $_debugText;
@@ -20,7 +20,8 @@ Class Output_OutputConsole implements Output {
     }
 
     public function outputScalar($debugVar, $debugText) {
-        $this->_defaultWriteMethodScalar = config::$config['defaultWriteMethodScalar']['FireBug'];
+
+        $this->_defaultWriteMethodScalar = config::$config['defaultWriteMethodScalar']['Screen'];
         if ($this->_writeMethod == '')
             $this->_writeMethod = $this->_defaultWriteMethodScalar;
 
@@ -30,26 +31,19 @@ Class Output_OutputConsole implements Output {
         $this->_debugText = $debugText;
 
         if ($this->_debugText != "") {
-            $prefix = $this->_debugText . ": ";
+            $prefix = $this->_debugText . ': ';
         }else
             $prefix = "";
 
-        ob_start();
-//        echo "\n";
-//        echo $this->_getPreText();
+        echo '<pre>';
         echo $prefix;
         $this->_writer->$writeOut($this->_debugVar);
-//        echo "\n\n";
-        $result = ob_get_clean();
-        $result = str_replace("\"", "\\\"", $result);
-        $result = str_replace("\n", "\\r\\n", $result);
-        echo '<script type="text/javascript">';
-        echo 'console.info("' . $result . '")';
-        echo '</script>';
+        echo '</pre>';
     }
 
     public function outputComposite($debugVar, $debugText) {
-        $this->_defaultWriteMethodComposite = config::$config['defaultWriteMethodComposite']['FireBug'];
+
+        $this->_defaultWriteMethodComposite = config::$config['defaultWriteMethodComposite']['Screen'];
         if ($this->_writeMethod == '')
             $this->_writeMethod = $this->_defaultWriteMethodComposite;
 
@@ -59,22 +53,14 @@ Class Output_OutputConsole implements Output {
         $this->_debugText = $debugText;
 
         if ($this->_debugText != "") {
-            $prefix = $this->_debugText . ":\n ";
+            $prefix = $this->_debugText . ':<br />';
         }else
             $prefix = "";
 
-        ob_start();
-//        echo "\n";
-//        echo $this->_getPreText();
+        echo '<pre>';
         echo $prefix;
         $this->_writer->$writeOut($this->_debugVar);
-//        echo "\n\n";
-        $result = ob_get_clean();
-        $result = str_replace("\"", "\\\"", $result);
-        $result = str_replace("\n", "\\r\\n", $result);
-        echo '<script type="text/javascript">';
-        echo 'console.info("' . $result . '")';
-        echo '</script>';
+        echo '</pre>';
     }
 
 }

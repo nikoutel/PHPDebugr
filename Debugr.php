@@ -44,7 +44,7 @@ Class Debugr { // @todo add include file with autoload
         self::$_debugText = $debugText;
 
         $isType = self::_getClassNameByType(self::$_debugVar);
-        $output = 'Output_Output' . $outputOption;
+        $output = 'Output_' . $outputOption;
 
         $writer = new Writer();
         $output = new $output($writeOption, $writer); 

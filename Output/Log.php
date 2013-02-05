@@ -1,6 +1,6 @@
 <?php
 
-Class Output_OutputLog implements Output {
+Class Output_Log implements Output {
 
     private $_debugVar;
     private $_debugText;
