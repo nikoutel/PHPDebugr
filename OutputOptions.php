@@ -4,7 +4,7 @@ final Class  OutputOptions {
     
     const Screen = 'Screen';
     const Log = 'Log';
-    const Mail = 'Mail';
+    const FireBug = 'FireBug';
     
     private function __construct() {
         

@@ -33,9 +33,9 @@ Class Debugr {
     }
 
     /** can be called directly * */
-    public static function eDbgMail($debugVar, $debugText = "", $writeOption = "") {
+    public static function eDbgFB($debugVar, $debugText = "", $writeOption = "") {
 
-        self::_eDbgOut($debugVar, $debugText, $writeOption, 'Mail');
+        self::_eDbgOut($debugVar, $debugText, $writeOption, 'FireBug');
     }
 
     private static function _eDbgOut($debugVar, $debugText, $writeOption, $outputOption) {
