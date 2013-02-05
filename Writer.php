@@ -2,17 +2,28 @@
 
 Class Writer {
 
+    /**
+     * 
+     * @param type $writeOptionFlag
+     * @return type
+     * @throws InvalidArgumentException
+     */
     public function getWriteMethod($writeOptionFlag) {
         if ($writeOptionFlag != '') {
 
             $reflCl = new ReflectionClass('WriteOptions');
             $bitArray = $reflCl->getConstants();
+            
+            $str = implode(",", array_keys($bitArray));
             if (array_key_exists($writeOptionFlag, $bitArray)) {
                 $optstr = '$option = WriteOptions::' . $writeOptionFlag . ';'; // @todo array?
                 eval($optstr);
                 return $option;
             } else {
-                throw new Exception;
+                $errorMsg = 'Invalid argument - ';
+                $errorMsg .= 'valid options: [' . implode(", ", array_keys($bitArray)). '] - ';
+                $errorMsg .= 'Default used';
+                throw new InvalidArgumentException($errorMsg);
             }
         }
     }

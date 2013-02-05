@@ -16,8 +16,8 @@ Class Output_OutputLog implements Output {
         $this->_writer = $writer;
         try {
             $this->_writeMethod = $this->_writer->getWriteMethod($writeOptionFlag);
-        } catch (Exception $exc) {
-            echo 'valid: {e,v,r,c}'; //@todo error msg
+        } catch (Exception $e) {
+            echo $e->getMessage();
         }
         $this->_filename = config::$config['logFile'];
     }
@@ -52,7 +52,10 @@ Class Output_OutputLog implements Output {
         $this->_writer->$writeOut($this->_debugVar);
         echo "\n\n";
         $result = ob_get_clean();
-        file_put_contents($this->_filename, $result, FILE_APPEND);
+        $fp = @file_put_contents($this->_filename, $result, FILE_APPEND);
+        if ($fp === FALSE){
+            echo $this->_filename . ' is not writable';
+        }
     }
 
     public function outputComposite($debugVar, $debugText) {
@@ -78,7 +81,10 @@ Class Output_OutputLog implements Output {
         $this->_writer->$writeOut($this->_debugVar);
         echo "\n";
         $result = ob_get_clean();
-        file_put_contents($this->_filename, $result, FILE_APPEND);
+        $fp = @file_put_contents($this->_filename, $result, FILE_APPEND);
+        if ($fp === FALSE){
+            echo $this->_filename . ' is not writable';
+        }
     }
 
 }
