@@ -1,6 +1,6 @@
 <?php
 
-Class Output_OutputFireBug implements Output { // @todo rename to console
+Class Output_OutputConsole implements Output {
 
     private $_debugVar;
     private $_debugText;

@@ -33,9 +33,9 @@ Class Debugr { // @todo add include file with autoload
     }
 
     /** can be called directly * */
-    public static function eDbgFB($debugVar, $debugText = "", $writeOption = "") {
+    public static function eDbgConsole($debugVar, $debugText = "", $writeOption = "") {
 
-        self::_eDbgOut($debugVar, $debugText, $writeOption, 'FireBug');
+        self::_eDbgOut($debugVar, $debugText, $writeOption, 'Console');
     }
 
     private static function _eDbgOut($debugVar, $debugText, $writeOption, $outputOption) {
