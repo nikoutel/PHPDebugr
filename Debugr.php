@@ -43,13 +43,13 @@ Class Debugr { // @todo add include file with autoload
         self::$_debugVar = $debugVar;
         self::$_debugText = $debugText;
 
-        $typeCl = self::_getClassNameByType(self::$_debugVar); // @todo rename isType
-        $outputCl = 'Output_Output' . $outputOption;
+        $isType = self::_getClassNameByType(self::$_debugVar);
+        $output = 'Output_Output' . $outputOption;
 
         $writer = new Writer();
-        $output = new $outputCl($writeOption, $writer); 
-        $typeObj = new $typeCl($output); 
-        return $typeObj; //@todo ?
+        $output = new $output($writeOption, $writer); 
+        $type = new $isType($output); 
+        return $type; //@todo ?
     }
 
     private static function _getClassNameByType($debugVar) {
