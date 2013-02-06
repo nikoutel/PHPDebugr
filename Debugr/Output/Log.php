@@ -53,7 +53,7 @@ Class Output_Log implements Output {
         echo "\n\n";
         $result = ob_get_clean();
         $fp = @file_put_contents($this->_filename, $result, FILE_APPEND);
-        if ($fp === FALSE){
+        if ($fp === FALSE) {
             echo $this->_filename . ' is not writable';
         }
     }
@@ -82,7 +82,7 @@ Class Output_Log implements Output {
         echo "\n";
         $result = ob_get_clean();
         $fp = @file_put_contents($this->_filename, $result, FILE_APPEND);
-        if ($fp === FALSE){
+        if ($fp === FALSE) {
             echo $this->_filename . ' is not writable';
         }
     }

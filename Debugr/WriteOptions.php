@@ -11,7 +11,6 @@ final Class WriteOptions {
     const printR = 'printR';
     const custom = 'custom';
 
-
     private function __construct() {
         
     }

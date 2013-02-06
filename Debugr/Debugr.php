@@ -1,6 +1,6 @@
 <?php
 
-Class Debugr { 
+Class Debugr {
 
     private static $_debugVar;
     private static $_debugText;
@@ -16,10 +16,10 @@ Class Debugr {
     public static function eDbg($debugVar, $debugText = "", $writeOption = "") {
 
 
-        $defaultOutput = config::$config['defaultOutput']; 
-        if ($defaultOutput != 'None'){
+        $defaultOutput = config::$config['defaultOutput'];
+        if ($defaultOutput != 'None') {
             if (!config::$config['disabled'])
-            self::_eDbgOut($debugVar, $debugText, $writeOption, $defaultOutput);
+                self::_eDbgOut($debugVar, $debugText, $writeOption, $defaultOutput);
         }
     }
 
@@ -27,23 +27,23 @@ Class Debugr {
     public static function eDbgScreen($debugVar, $debugText = "", $writeOption = "") {
 
         if (!config::$config['disabled'])
-        self::_eDbgOut($debugVar, $debugText, $writeOption, 'Screen');
+            self::_eDbgOut($debugVar, $debugText, $writeOption, 'Screen');
     }
 
     /** can be called directly * */
     public static function eDbgLog($debugVar, $debugText = "", $writeOption = "") {
 
         if (!config::$config['disabled'])
-        self::_eDbgOut($debugVar, $debugText, $writeOption, 'Log');
+            self::_eDbgOut($debugVar, $debugText, $writeOption, 'Log');
     }
 
     /** can be called directly * */
     public static function eDbgConsole($debugVar, $debugText = "", $writeOption = "") {
 
         if (!config::$config['disabled'])
-        self::_eDbgOut($debugVar, $debugText, $writeOption, 'Console');
+            self::_eDbgOut($debugVar, $debugText, $writeOption, 'Console');
     }
-    
+
     private static function _eDbgOut($debugVar, $debugText, $writeOption, $outputOption) {
 
         self::$_debugVar = $debugVar;
@@ -53,9 +53,8 @@ Class Debugr {
         $output = 'Output_' . $outputOption;
 
         $writer = new Writer();
-        $output = new $output($writeOption, $writer); 
-        $type = new $isType($output); 
-        return $type; 
+        $output = new $output($writeOption, $writer);
+        $type = new $isType($output);
     }
 
     private static function _getClassNameByType($debugVar) {

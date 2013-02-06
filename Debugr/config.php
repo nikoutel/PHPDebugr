@@ -17,6 +17,7 @@ class config {
             'FireBug' => WriteOptions::varDump
         )
     );
+
 }
 
 ?>

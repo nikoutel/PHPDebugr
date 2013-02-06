@@ -1,6 +1,6 @@
 <?php
 
-abstract Class Type { 
+abstract Class Type {
 
     protected $_debugVar;
     protected $_debugText;
@@ -8,9 +8,9 @@ abstract Class Type {
     public function __construct() {
         $this->_debugVar = Debugr::getDebugVar();
         $this->_debugText = Debugr::getDebugText();
-
     }
-    abstract public  function send(Output $output);
+
+    abstract public function send(Output $output);
 }
 
 ?>

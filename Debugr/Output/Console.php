@@ -35,11 +35,8 @@ Class Output_Console implements Output {
             $prefix = "";
 
         ob_start();
-//        echo "\n";
-//        echo $this->_getPreText();
         echo $prefix;
         $this->_writer->$writeOut($this->_debugVar);
-//        echo "\n\n";
         $result = ob_get_clean();
         $result = str_replace("\"", "\\\"", $result);
         $result = str_replace("\n", "\\r\\n", $result);
@@ -64,11 +61,8 @@ Class Output_Console implements Output {
             $prefix = "";
 
         ob_start();
-//        echo "\n";
-//        echo $this->_getPreText();
         echo $prefix;
         $this->_writer->$writeOut($this->_debugVar);
-//        echo "\n\n";
         $result = ob_get_clean();
         $result = str_replace("\"", "\\\"", $result);
         $result = str_replace("\n", "\\r\\n", $result);
