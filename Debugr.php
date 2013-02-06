@@ -16,7 +16,7 @@ Class Debugr { // @todo add include file with autoload
     public static function eDbg($debugVar, $debugText = "", $writeOption = "") {
 
 
-        $defaultOutput = config::$config['defaultOutput']; // {Screen, Log, Mail}
+        $defaultOutput = config::$config['defaultOutput']; 
         self::_eDbgOut($debugVar, $debugText, $writeOption, $defaultOutput);
     }
 
@@ -49,7 +49,7 @@ Class Debugr { // @todo add include file with autoload
         $writer = new Writer();
         $output = new $output($writeOption, $writer); 
         $type = new $isType($output); 
-        return $type; //@todo ?
+        return $type; 
     }
 
     private static function _getClassNameByType($debugVar) {

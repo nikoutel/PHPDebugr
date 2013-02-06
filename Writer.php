@@ -16,7 +16,7 @@ Class Writer {
             
             $str = implode(",", array_keys($bitArray));
             if (array_key_exists($writeOptionFlag, $bitArray)) {
-                $optstr = '$option = WriteOptions::' . $writeOptionFlag . ';'; // @todo array?
+                $optstr = '$option = WriteOptions::' . $writeOptionFlag . ';'; 
                 eval($optstr);
                 return $option;
             } else {
