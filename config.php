@@ -3,6 +3,7 @@
 class config {
 
     public static $config = array(
+        'disabled' => FALSE, // kill switch
         'logFile' => 'output.log',
         'defaultOutput' => OutputOptions::Screen,
         'defaultWriteMethodScalar' => array(
