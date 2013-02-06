@@ -1,6 +1,6 @@
 <?php
 
-Class Debugr { // @todo add include file with autoload
+Class Debugr { 
 
     private static $_debugVar;
     private static $_debugText;
