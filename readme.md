@@ -3,25 +3,25 @@ PHPDebugr
 
 
 
-This is a debugger for inspecting values of variables   
+This is a debugger for inspecting values of variables.   
 
 ## Usage ##
 
 **Debugr::eDbg**(mixed *$var* [, string *$description* [, string *$writeOption*]])
 
-`Debugr::eDbg` writes the value of `$var` and the `$description` text (optional) to the default output defined in `config.php` using the `$writeOption`.
+`Debugr::eDbg` writes the value of `$var` and the `$description` text (optional) to the default output, defined in `config.php` , using the `$writeOption`.
 Possible options for the default output are:  `Screen`, `Log`, `Console`, and `None`.  
 *(The predefined value is Screen)*
 
 
 **Debugr::eDbgScreen**(mixed *$var* [, string *$description* [, string *$writeOption*]])
 
-`Debugr::eDbgScreen` - writes the value of `$var` to the screen regardless of the default `config.php` file entry
+`Debugr::eDbgScreen`  writes the value of `$var` to the screen regardless of the default `config.php` file entry
 
 
 **Debugr::eDbgLog**(mixed *$var* [, string *$description* [, string *$writeOption*]])
 
-`Debugr::eDbgLog` - writes the value of `$var` to the log file defined in `config.php`
+`Debugr::eDbgLog`  writes the value of `$var` to the log file defined in `config.php`
 
 
 **Debugr::eDbgConsole**(mixed *$var* [, string *$description* [, string *$writeOption*]])
@@ -49,12 +49,12 @@ you can choose the way the output is written/formatted ??
 **options:**
 
 >
-'e ' or 'echos '  
-'v ' or 'varDump '  
-'r ' or 'printR '  
-'c ' or 'custom ' – not implemented (you can write you own)  
+'e' or 'echos'  
+'v' or 'varDump'  
+'r' or 'printR'  
+'c' or 'custom' – not implemented (you can write your own)  
 
-If you omit this the defaults are used. For scalar types *(integer, double, string)* the default is `echos` and for composite types *(array, object, resource, boolean, null, unknown type*) the default is `varDump`.  
+If you omit this the defaults are used. For scalar types *(integer, double, string)* the default is `echos` and for composite types *(array, object, resource, boolean, null, unknown type*) the default is `varDump`. The defaults can be changed in the `config.php` file.  
 *(I know boolean is technically scalar and Null is… well, Null but they are fitting better in the composite group)*
 
 ## Notes ##
@@ -63,7 +63,7 @@ You can disable all by settting: `disable:true` in `config.php`.  This is some s
 
 ## How to use ##
 
-Use eDbg to output the variable values to the default output. On a developer server you can choose `Screen`, and then change it to `Log` for the live server. All `Debugr::eDbg` calls will now write to the log file instead of the screen.
+Use `eDbg` to output the variable values to the default output. On a developer server you can choose `Screen`, and then change it to `Log` for the live server. All `Debugr::eDbg` calls will now write to the log file instead of the screen.
 
 On some occasions you want a different output then the default e.g., when outputting a specific variable on screen breaks the site layout. In this case you can use `eDbgConsole` to use the browser console regardless of the default output. In the same way you can use `eDbgScreen`, `eDbgLog`, according to the situation and your needs.
 
