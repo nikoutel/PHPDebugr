@@ -1,5 +1,24 @@
 <?php
 
+/**
+ *
+ * Output_Log: 
+ * 
+ * 
+ * @package PHPDebugr
+ * @subpackage output
+ * @author Nikos Koutelidis nikoutel@gmail.com
+ * @copyright 2013 Nikos Koutelidis 
+ * @license http://www.mozilla.org/MPL/2.0/ Mozilla Public License Version 2.0
+ * @link github 
+ * 
+ * 
+ * This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/. 
+ * 
+ */
+
 Class Output_Log implements Output {
 
     private $_debugVar;
@@ -11,6 +30,11 @@ Class Output_Log implements Output {
     private $_preText;
     private $_filename;
 
+    /**
+     * 
+     * @param string $writeOptionFlag
+     * @param Writer $writer
+     */
     public function __construct($writeOptionFlag, Writer $writer) {
 
         $this->_writer = $writer;
@@ -22,6 +46,10 @@ Class Output_Log implements Output {
         $this->_filename = config::$config['logFile'];
     }
 
+    /**
+     * 
+     * @return string
+     */
     private function _getPreText() {
         $timestamp = date('d/m/Y H:i:s');
         $requestFile = $_SERVER['REQUEST_URI'];
@@ -29,6 +57,11 @@ Class Output_Log implements Output {
         return $this->_preText;
     }
 
+    /**
+     * 
+     * @param mixed $debugVar
+     * @param string $debugText
+     */
     public function outputScalar($debugVar, $debugText) {
 
         $this->_defaultWriteMethodScalar = config::$config['defaultWriteMethodScalar']['Log'];
@@ -58,6 +91,11 @@ Class Output_Log implements Output {
         }
     }
 
+    /**
+     * 
+     * @param mixed $debugVar
+     * @param string $debugText
+     */
     public function outputComposite($debugVar, $debugText) {
 
         $this->_defaultWriteMethodComposite = config::$config['defaultWriteMethodComposite']['Log'];
