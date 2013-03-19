@@ -22,11 +22,10 @@
 /**
  * 
  * @param string $class_name
- * @todo spl_autoload_register
  */
-function __autoload($class_name) {
+function myautoload($class_name) {
     $class_file_path = str_replace('_', '/', $class_name) . '.php';
     require(dirname(__FILE__) . '/' . $class_file_path);
 }
-
+spl_autoload_register('myautoload');
 ?>
