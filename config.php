@@ -24,6 +24,7 @@ class config {
     /**
      *
      * @var array 
+     * @todo replace Firebug with console
      */
     public static $config = array(
         'disabled' => FALSE, // kill switch
