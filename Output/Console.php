@@ -49,7 +49,7 @@ Class Output_Console implements Output {
      * @param string $debugText
      */
     public function outputScalar($debugVar, $debugText) {
-        $this->_defaultWriteMethodScalar = config::$config['defaultWriteMethodScalar']['FireBug'];
+        $this->_defaultWriteMethodScalar = config::$config['defaultWriteMethodScalar']['Console'];
         if ($this->_writeMethod == '')
             $this->_writeMethod = $this->_defaultWriteMethodScalar;
 
@@ -80,7 +80,7 @@ Class Output_Console implements Output {
      * @param string $debugText
      */
     public function outputComposite($debugVar, $debugText) {
-        $this->_defaultWriteMethodComposite = config::$config['defaultWriteMethodComposite']['FireBug'];
+        $this->_defaultWriteMethodComposite = config::$config['defaultWriteMethodComposite']['Console'];
         if ($this->_writeMethod == '')
             $this->_writeMethod = $this->_defaultWriteMethodComposite;
 

@@ -24,7 +24,6 @@ class config {
     /**
      *
      * @var array 
-     * @todo replace Firebug with console
      */
     public static $config = array(
         'disabled' => FALSE, // kill switch
@@ -33,12 +32,12 @@ class config {
         'defaultWriteMethodScalar' => array(
             'Screen' => WriteOptions::echos,
             'Log' => WriteOptions::echos,
-            'FireBug' => WriteOptions::echos
+            'Console' => WriteOptions::echos
         ),
         'defaultWriteMethodComposite' => array(
             'Screen' => WriteOptions::varDump,
             'Log' => WriteOptions::varDump,
-            'FireBug' => WriteOptions::varDump
+            'Console' => WriteOptions::varDump
         )
     );
 
