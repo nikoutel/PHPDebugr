@@ -23,13 +23,15 @@
 Class Debugr {
 
     /**
-     * the variable to be inspected
+     * The variable to be inspected
      * 
      * @var mixed 
      */
     private static $_debugVar;
     
     /**
+     * Text describing the variable
+     * 
      * @var string 
      */
     private static $_debugText;
