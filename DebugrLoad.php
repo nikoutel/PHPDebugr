@@ -23,6 +23,7 @@
  * 
  * @param string $class_name
  * @todo spl_autoload_register
+ * @todo dirname(__FILE__)
  */
 function __autoload($class_name) {
     $class_file_path = str_replace('_', '/', $class_name) . '.php';

@@ -52,7 +52,7 @@ Class Writer {
      * @param string $var
      */
     public static function echos($var) {
-        if (is_object($var)) {
+        if (is_object($var)) {// @togo check if needet
 
             $var = 'Object';
             ;
