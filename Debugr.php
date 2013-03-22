@@ -124,7 +124,7 @@ Class Debugr {
     /**
      * 
      * Finds out which objects are needed
-     * and instatiates them
+     * and instantiates them
      * 
      * @param mixed $debugVar
      * @param string $debugText

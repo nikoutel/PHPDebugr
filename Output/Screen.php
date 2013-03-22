@@ -3,7 +3,7 @@
 /**
  *
  * Output_Screen: Outputs to screen using 
- * the 'write methods' providet by 'Writer'
+ * the 'write methods' provided by 'Writer'
  * 
  * 
  * @package PHPDebugr

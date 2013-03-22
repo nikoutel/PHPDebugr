@@ -3,7 +3,7 @@
 /**
  *
  * Output_Log: Outputs to the log file using 
- * the 'write methods' providet by 'Writer'
+ * the 'write methods' provided by 'Writer'
  * 
  * 
  * @package PHPDebugr
