@@ -69,6 +69,9 @@ On some occasions you want a different output then the default e.g., when output
 
 The value is formatted according to the variables type or the `writeOption` given.
 
+## Requirements ##
+
+Required PHP 5.1.2 (min)
 
 ## Examples ##
 
@@ -157,6 +160,10 @@ Debugr::edbgConsole($book, '$book');
 ```
 
 ## Licence ##
+This software is licensed under the [MPL](LICENSE) 2.0:
+```
+    This Source Code Form is subject to the terms of the Mozilla Public
+    License, v. 2.0. If a copy of the MPL was not distributed with this
+    file, You can obtain one at http://mozilla.org/MPL/2.0/.
+```
 
-
-## Requirements ##
