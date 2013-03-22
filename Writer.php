@@ -51,7 +51,7 @@ Class Writer {
     /**
      * @param string $var
      */
-    public static function echos($var) {
+    public static function echoes($var) {
         /**
          * If $var is an Object replace its value with the
          * string 'Object' to prevent the

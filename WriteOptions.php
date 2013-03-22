@@ -21,11 +21,11 @@
 
 final Class WriteOptions {
 
-    const e = 'echos';
+    const e = 'echoes';
     const v = 'varDump';
     const r = 'printR';
     const c = 'custom';
-    const echos = 'echos';
+    const echoes = 'echoes';
     const varDump = 'varDump';
     const printR = 'printR';
     const custom = 'custom';

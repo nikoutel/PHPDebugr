@@ -31,9 +31,9 @@ class config {
         'logFile' => 'output.log',
         'defaultOutput' => OutputOptions::Screen,
         'defaultWriteMethodScalar' => array(
-            'Screen' => WriteOptions::echos,
-            'Log' => WriteOptions::echos,
-            'Console' => WriteOptions::echos
+            'Screen' => WriteOptions::echoes,
+            'Log' => WriteOptions::echoes,
+            'Console' => WriteOptions::echoes
         ),
         'defaultWriteMethodComposite' => array(
             'Screen' => WriteOptions::varDump,
