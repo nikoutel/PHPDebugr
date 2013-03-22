@@ -2,7 +2,7 @@
 
 /**
  *
- * Type_IsComposite: sends composite types to output
+ * Type_IsComposite: Sends composite types to output
  * 
  * 
  * @package PHPDebugr
@@ -26,6 +26,7 @@ Class Type_IsComposite extends Type {
     }
 
     /**
+     * Sends composite var and description text to Output
      * 
      * @param Output $output
      */

@@ -2,7 +2,7 @@
 
 /**
  *
- * Type_IsNull: sends NULLs to output
+ * Type_IsNull: Sends NULLs to output
  * 
  * 
  * @package PHPDebugr

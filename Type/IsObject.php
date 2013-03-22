@@ -2,7 +2,7 @@
 
 /**
  *
- * Type_IsObject: sends objects to output
+ * Type_IsObject: Sends objects to output
  * 
  * 
  * @package PHPDebugr

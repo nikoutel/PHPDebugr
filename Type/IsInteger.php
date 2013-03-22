@@ -2,7 +2,7 @@
 
 /**
  *
- * Type_IsInteger: sends integers to output
+ * Type_IsInteger: Sends integers to output
  * 
  * 
  * @package PHPDebugr

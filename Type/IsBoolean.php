@@ -2,7 +2,7 @@
 
 /**
  *
- * Type_IsBoolean: sends booleans to output
+ * Type_IsBoolean: Sends booleans to output
  * 
  * 
  * @package PHPDebugr

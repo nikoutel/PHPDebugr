@@ -2,7 +2,7 @@
 
 /**
  *
- * Output: 
+ * Output: interface; Defines the methods for the output classes
  * 
  * 
  * @package PHPDebugr
@@ -21,8 +21,20 @@
 
 interface Output {
 
+    /**
+     * Outputs using formatting specific for scalar types
+     * 
+     * @param mixed $debugVar
+     * @param string $debugText
+     */
     public function outputScalar($debugVar, $debugText);
 
+    /**
+     * Outputs  using formatting specific for composite types
+     * 
+     * @param mixed $debugVar
+     * @param string $debugText
+     */
     public function outputComposite($debugVar, $debugText);
 }
 

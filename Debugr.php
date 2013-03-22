@@ -2,9 +2,9 @@
 
 /**
  *
- * Debugr: Main class of the debugger.
+ * Debugr: Main class of PHPDebugr and point of entry
  * 
- * Controls the incoming calls to the lib and calls the aprop functions
+ * Controls the incoming calls to the library
  * 
  * @package PHPDebugr
  * @subpackage main
@@ -37,6 +37,8 @@ Class Debugr {
     private static $_debugText;
 
     /**
+     * Returns the variable to be inspected
+     * 
      * @return mixed
      */
     public static function getDebugVar() {
@@ -44,6 +46,8 @@ Class Debugr {
     }
 
     /**
+     * Returns the text describing the variable
+     * 
      * @return string
      */
     public static function getDebugText() {
@@ -51,6 +55,9 @@ Class Debugr {
     }
 
     /**
+     * Main calling method for PHPDebugr
+     * 
+     * Initializes the debugging process using the default output
      * 
      * @param mixed $debugVar
      * @param string $debugText
@@ -66,8 +73,11 @@ Class Debugr {
         }
     }
 
-    /** can be called directly * */
     /**
+     * Calling method for PHPDebugr
+     * 
+     * Initializes the debugging process using the screen as output
+     * (can be called directly)
      * 
      * @param mixed $debugVar
      * @param string $debugText
@@ -79,8 +89,11 @@ Class Debugr {
             self::_eDbgOut($debugVar, $debugText, $writeOption, 'Screen');
     }
 
-    /** can be called directly * */
     /**
+     * Calling method for PHPDebugr
+     * 
+     * Initializes the debugging process using the log file as output
+     * (can be called directly)
      * 
      * @param mixed $debugVar
      * @param string $debugText
@@ -91,9 +104,12 @@ Class Debugr {
         if (!config::$config['disabled'])
             self::_eDbgOut($debugVar, $debugText, $writeOption, 'Log');
     }
-
-    /** can be called directly * */
+    
     /**
+     * Calling method for PHPDebugr
+     * 
+     * Initializes the debugging process using the console as output
+     * (can be called directly)
      * 
      * @param mixed $debugVar
      * @param string $debugText
@@ -106,6 +122,9 @@ Class Debugr {
     }
 
     /**
+     * 
+     * Finds out which objects are needed
+     * and instatiates them
      * 
      * @param mixed $debugVar
      * @param string $debugText

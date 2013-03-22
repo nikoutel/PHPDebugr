@@ -2,7 +2,7 @@
 
 /**
  *
- * Type_IsUnknownType: sends "unknown types" to output
+ * Type_IsUnknownType: Sends "unknown types" to output
  * 
  * 
  * @package PHPDebugr

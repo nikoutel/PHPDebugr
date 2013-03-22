@@ -2,7 +2,8 @@
 
 /**
  *
- * Type: 
+ * Type: abstract; Sets the variables to be inherited and defines
+ * the methods for the type classes
  * 
  * 
  * @package PHPDebugr
@@ -21,7 +22,14 @@
 
 abstract Class Type {
 
+    /**
+     * @var mixed 
+     */
     protected $_debugVar;
+    
+    /**
+     * @var string 
+     */
     protected $_debugText;
 
     public function __construct() {

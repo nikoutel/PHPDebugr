@@ -2,7 +2,7 @@
 
 /**
  *
- * Writer: 
+ * Writer: Provides the 'write methods'
  * 
  * 
  * @package PHPDebugr
@@ -22,6 +22,7 @@
 Class Writer {
 
     /**
+     * Returns the write method according to the writeOptionFlag 
      * 
      * @param string $writeOptionFlag
      * @return string
@@ -48,11 +49,16 @@ Class Writer {
     }
 
     /**
-     * 
      * @param string $var
      */
     public static function echos($var) {
-        if (is_object($var)) {// @togo check if needet
+        /**
+         * If $var is an Object replace its value with the
+         * string 'Object' to prevent the
+         * "Catchable fatal error: Object could not be converted to string"
+         * error
+         */
+        if (is_object($var)) {
 
             $var = 'Object';
             ;
@@ -61,7 +67,6 @@ Class Writer {
     }
 
     /**
-     * 
      * @param mixed $var
      */
     public function varDump($var) {
@@ -69,7 +74,6 @@ Class Writer {
     }
 
     /**
-     * 
      * @param mixed $var
      */
     public static function printR($var) {
@@ -77,11 +81,13 @@ Class Writer {
     }
 
     /**
+     * The custom method is not implemented (you can write your own) 
      * 
      * @param mixed $var
      */
     public static function custom($var) {
-        //@todo write comment
+        
+        //your code here
     }
 
 }

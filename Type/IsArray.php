@@ -2,7 +2,7 @@
 
 /**
  *
- * Type_IsArray: sends arrays to output
+ * Type_IsArray: Sends arrays to output
  * 
  * 
  * @package PHPDebugr

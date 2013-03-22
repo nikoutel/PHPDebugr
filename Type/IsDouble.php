@@ -2,7 +2,7 @@
 
 /**
  *
- * Type_IsDouble: sends doubles to output
+ * Type_IsDouble: Sends doubles to output
  * 
  * 
  * @package PHPDebugr
