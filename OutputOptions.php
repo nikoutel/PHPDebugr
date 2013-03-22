@@ -2,7 +2,7 @@
 
 /**
  *
- * OutputOptions: 
+ * OutputOptions:  Enumerates the output options
  * 
  * 
  * @package PHPDebugr

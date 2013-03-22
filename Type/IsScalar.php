@@ -2,7 +2,7 @@
 
 /**
  *
- * Type_IsScalar: sends scalar types to output
+ * Type_IsScalar: Sends scalar types to output
  * 
  * 
  * @package PHPDebugr
@@ -26,6 +26,7 @@ Class Type_IsScalar extends Type {
     }
 
     /**
+     * Sends scalar var and description text to Output
      * 
      * @param Output $output
      */

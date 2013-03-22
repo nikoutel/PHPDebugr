@@ -2,7 +2,7 @@
 
 /**
  *
- * Type_IsResource: sends resources to output
+ * Type_IsResource: Sends resources to output
  * 
  * 
  * @package PHPDebugr

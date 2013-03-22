@@ -2,7 +2,10 @@
 
 /**
  *
- * DebugrLoad.php: 
+ * DebugrLoad.php: Autoloader for PHPDebugr
+ * 
+ * It uses the 'spl_autoload_register' function
+ * to make it easier to implement the lib
  * 
  * 
  * @package PHPDebugr
@@ -20,12 +23,13 @@
  */
 
 /**
- * 
+ * Autoload method for PHPDebugr
+ *  
  * @param string $class_name
  */
-function myautoload($class_name) {
+function PHPDebugr_autoload($class_name) {
     $class_file_path = str_replace('_', '/', $class_name) . '.php';
     require(dirname(__FILE__) . '/' . $class_file_path);
 }
-spl_autoload_register('myautoload');
+spl_autoload_register('PHPDebugr_autoload');
 ?>

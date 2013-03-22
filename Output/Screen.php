@@ -2,7 +2,8 @@
 
 /**
  *
- * Output_Screen: 
+ * Output_Screen: Outputs to screen using 
+ * the 'write methods' providet by 'Writer'
  * 
  * 
  * @package PHPDebugr
@@ -21,11 +22,34 @@
 
 Class Output_Screen implements Output {
 
+    /**
+     * @var mixed 
+     */
     private $_debugVar;
+    
+    /**
+     * @var string 
+     */
     private $_debugText;
+    
+    /**
+     * @var string 
+     */
     private $_writeMethod;
+    
+    /**
+     * @var string 
+     */
     private $_defaultWriteMethodScalar;
+    
+    /**
+     * @var string 
+     */
     private $_defaultWriteMethodComposite;
+    
+    /**
+     * @var Writer 
+     */
     private $_writer;
 
     /**
@@ -44,6 +68,7 @@ Class Output_Screen implements Output {
     }
 
     /**
+     * Outputs to screen using formatting specific for scalar types
      * 
      * @param mixed $debugVar
      * @param string $debugText
@@ -71,6 +96,7 @@ Class Output_Screen implements Output {
     }
 
     /**
+     * Outputs to screen using formatting specific for composite types
      * 
      * @param mixed $debugVar
      * @param string $debugText

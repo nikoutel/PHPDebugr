@@ -2,7 +2,8 @@
 
 /**
  *
- * Output_Console: 
+ * Output_Console: Outputs to the console using 
+ * the 'write methods' providet by 'Writer'
  * 
  * 
  * @package PHPDebugr
@@ -21,11 +22,35 @@
 
 Class Output_Console implements Output {
 
+            
+    /**
+     * @var mixed 
+     */
     private $_debugVar;
+            
+    /**
+     * @var string 
+     */
     private $_debugText;
+            
+    /**
+     * @var string 
+     */
     private $_writeMethod;
+            
+    /**
+     * @var string 
+     */
     private $_defaultWriteMethodScalar;
+            
+    /**
+     * @var string 
+     */
     private $_defaultWriteMethodComposite;
+            
+    /**
+     * @var Writer 
+     */
     private $_writer;
 
     /**
@@ -44,6 +69,7 @@ Class Output_Console implements Output {
     }
 
     /**
+     * Outputs to the console using formatting specific for scalar types
      * 
      * @param mixed $debugVar
      * @param string $debugText
@@ -75,6 +101,7 @@ Class Output_Console implements Output {
     }
 
     /**
+     * Outputs to the console using formatting specific for composite types
      * 
      * @param mixed $debugVar
      * @param string $debugText

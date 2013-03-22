@@ -2,7 +2,7 @@
 
 /**
  *
- * Type_IsString: sends strings to output
+ * Type_IsString: Sends strings to output
  * 
  * 
  * @package PHPDebugr

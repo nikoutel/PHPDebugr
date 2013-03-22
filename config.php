@@ -2,7 +2,7 @@
 
 /**
  *
- * config: 
+ * config: Provides the configuration array
  * 
  * 
  * @package PHPDebugr
@@ -22,7 +22,8 @@
 class config {
 
     /**
-     *
+     * The configuration array
+     * 
      * @var array 
      */
     public static $config = array(

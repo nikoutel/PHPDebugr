@@ -2,7 +2,7 @@
 
 /**
  *
- * WriteOptions: 
+ * WriteOptions: Enumerates the 'write options'/'write methods'
  * 
  * 
  * @package PHPDebugr
