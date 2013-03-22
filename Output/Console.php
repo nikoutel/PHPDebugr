@@ -3,7 +3,7 @@
 /**
  *
  * Output_Console: Outputs to the console using 
- * the 'write methods' providet by 'Writer'
+ * the 'write methods' provided by 'Writer'
  * 
  * 
  * @package PHPDebugr
