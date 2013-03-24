@@ -44,7 +44,7 @@ Text to be displayd before the variable value e.g.   `The value of $thisVar is:`
 ### writeOption ###
 (optional)
 
-you can choose the way the output is written/formatted ??
+you can choose the way the output is written/formatted
 
 **options:**
 
@@ -52,10 +52,10 @@ you can choose the way the output is written/formatted ??
 'e' or 'echoes'  
 'v' or 'varDump'  
 'r' or 'printR'  
-'c' or 'custom' – not implemented (you can write your own)  
+'c' or 'custom'  not implemented (you can write your own)  
 
 If you omit this the defaults are used. For scalar types *(integer, double, string)* the default is `echoes` and for composite types *(array, object, resource, boolean, null, unknown type*) the default is `varDump`. The defaults can be changed in the `config.php` file.  
-*(I know boolean is technically scalar and Null is… well, Null but they are fitting better in the composite group)*
+*(I know boolean is technically scalar and Null is well, Null but they are fitting better in the composite group)*
 
 ## Notes ##
 If `None` is used as the default output, `Debugr::eDbg` will not produce any output. This is not true for `eDbgScreen`, `eDbgLog`, `eDbgConsole`.
