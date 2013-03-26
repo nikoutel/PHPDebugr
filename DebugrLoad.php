@@ -2,11 +2,14 @@
 
 /**
  *
- * Type_IsDouble: Sends doubles to output
+ * DebugrLoad.php: Autoloader for PHPDebugr
+ * 
+ * It uses the 'spl_autoload_register' function
+ * to make it easier to implement the lib
  * 
  * 
  * @package PHPDebugr
- * @subpackage type
+ * @subpackage main
  * @author Nikos Koutelidis nikoutel@gmail.com
  * @copyright 2013 Nikos Koutelidis 
  * @license http://www.mozilla.org/MPL/2.0/ Mozilla Public License Version 2.0
@@ -19,13 +22,14 @@
  * 
  */
 
-Class Type_IsDouble extends Type_IsScalar {
-
-    public function __construct(Output $output) {
-        parent::__construct();
-        $this->send($output);
-    }
-
+/**
+ * Autoload method for PHPDebugr
+ *  
+ * @param string $class_name
+ */
+function PHPDebugr_autoload($class_name) {
+    $class_file_path = str_replace('_', '/', $class_name) . '.php';
+    require(dirname(__FILE__) . '/' . $class_file_path);
 }
-
+spl_autoload_register('PHPDebugr_autoload');
 ?>

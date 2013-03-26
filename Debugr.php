@@ -1,39 +1,160 @@
 <?php
 
-//function __autoload($class_name) {
-//
-//    $class_file_path = str_replace('_', '/', $class_name) . '.php';
-//    // echo $class_file_path;
-//    require($class_name);
-//}
+/**
+ *
+ * Debugr: Main class of PHPDebugr and point of entry
+ * 
+ * Controls the incoming calls to the library
+ * 
+ * @package PHPDebugr
+ * @subpackage main
+ * @author Nikos Koutelidis nikoutel@gmail.com
+ * @copyright 2013 Nikos Koutelidis 
+ * @license http://www.mozilla.org/MPL/2.0/ Mozilla Public License Version 2.0
+ * @link https://github.com/nikoutel/PHPDebugr 
+ * 
+ * 
+ * This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/. 
+ * 
+ */
 
 Class Debugr {
 
-    public static $var;
-    public static $varName;
+    /**
+     * The variable to be inspected
+     * 
+     * @var mixed 
+     */
+    private static $_debugVar;
+    
+    /**
+     * Text describing the variable
+     * 
+     * @var string 
+     */
+    private static $_debugText;
 
-    public static function eDbg($var, $varName = "") {
-        // if DBG or LOG...
-        self::eDbgPrint($var, $varName);
+    /**
+     * Returns the variable to be inspected
+     * 
+     * @return mixed
+     */
+    public static function getDebugVar() {
+        return self::$_debugVar;
     }
 
-    public static function eDbgPrint($var, $varName = "") {
+    /**
+     * Returns the text describing the variable
+     * 
+     * @return string
+     */
+    public static function getDebugText() {
+        return self::$_debugText;
+    }
 
-        self::$var = $var;
-        self::$varName = $varName;
+    /**
+     * Main calling method for PHPDebugr
+     * 
+     * Initializes the debugging process using the default output
+     * 
+     * @param mixed $debugVar
+     * @param string $debugText
+     * @param string $writeOption
+     */
+    public static function eDbg($debugVar, $debugText = "", $writeOption = "") {
 
-        $type = ucwords(strtolower(gettype(self::$var)));
+
+        $defaultOutput = config::$config['defaultOutput'];
+        if ($defaultOutput != 'None') {
+            if (!config::$config['disabled'])
+                self::_eDbgOut($debugVar, $debugText, $writeOption, $defaultOutput);
+        }
+    }
+
+    /**
+     * Calling method for PHPDebugr
+     * 
+     * Initializes the debugging process using the screen as output
+     * (can be called directly)
+     * 
+     * @param mixed $debugVar
+     * @param string $debugText
+     * @param string $writeOption
+     */
+    public static function eDbgScreen($debugVar, $debugText = "", $writeOption = "") {
+
+        if (!config::$config['disabled'])
+            self::_eDbgOut($debugVar, $debugText, $writeOption, 'Screen');
+    }
+
+    /**
+     * Calling method for PHPDebugr
+     * 
+     * Initializes the debugging process using the log file as output
+     * (can be called directly)
+     * 
+     * @param mixed $debugVar
+     * @param string $debugText
+     * @param string $writeOption
+     */
+    public static function eDbgLog($debugVar, $debugText = "", $writeOption = "") {
+
+        if (!config::$config['disabled'])
+            self::_eDbgOut($debugVar, $debugText, $writeOption, 'Log');
+    }
+    
+    /**
+     * Calling method for PHPDebugr
+     * 
+     * Initializes the debugging process using the console as output
+     * (can be called directly)
+     * 
+     * @param mixed $debugVar
+     * @param string $debugText
+     * @param string $writeOption
+     */
+    public static function eDbgConsole($debugVar, $debugText = "", $writeOption = "") {
+
+        if (!config::$config['disabled'])
+            self::_eDbgOut($debugVar, $debugText, $writeOption, 'Console');
+    }
+
+    /**
+     * 
+     * Finds out which objects are needed
+     * and instantiates them
+     * 
+     * @param mixed $debugVar
+     * @param string $debugText
+     * @param string $writeOption
+     * @param string $outputOption
+     */
+    private static function _eDbgOut($debugVar, $debugText, $writeOption, $outputOption) {
+
+        self::$_debugVar = $debugVar;
+        self::$_debugText = $debugText;
+
+        $isType = self::_getClassNameByType(self::$_debugVar);
+        $output = 'Output_' . $outputOption;
+
+        $writer = new Writer();
+        $output = new $output($writeOption, $writer);
+        $type = new $isType($output);
+    }
+
+    /**
+     * Returns the class name according to the variable type
+     * 
+     * @param mixed $debugVar
+     * @return string
+     */
+    private static function _getClassNameByType($debugVar) {
+        $type = ucwords(strtolower(gettype($debugVar)));
         $type = str_replace(" ", "", $type);
         $type = 'Type_Is' . $type;
-
-        $outObj = new Output_OutputPrint();
-
-        $typeObj = new $type($outObj);
-        return $typeObj;
-    }
-
-    public static function eDbgLog($var, $varName = "") {
-        
+        return $type;
     }
 
 }

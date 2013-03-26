@@ -2,11 +2,11 @@
 
 /**
  *
- * Type_IsDouble: Sends doubles to output
+ * OutputOptions:  Enumerates the output options
  * 
  * 
  * @package PHPDebugr
- * @subpackage type
+ * @subpackage main
  * @author Nikos Koutelidis nikoutel@gmail.com
  * @copyright 2013 Nikos Koutelidis 
  * @license http://www.mozilla.org/MPL/2.0/ Mozilla Public License Version 2.0
@@ -19,11 +19,15 @@
  * 
  */
 
-Class Type_IsDouble extends Type_IsScalar {
+final Class OutputOptions {
 
-    public function __construct(Output $output) {
-        parent::__construct();
-        $this->send($output);
+    const Screen = 'Screen';
+    const Log = 'Log';
+    const Console = 'Console';
+    const None = 'None';
+
+    private function __construct() {
+        
     }
 
 }

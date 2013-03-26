@@ -2,11 +2,11 @@
 
 /**
  *
- * Type_IsDouble: Sends doubles to output
+ * WriteOptions: Enumerates the 'write options'/'write methods'
  * 
  * 
  * @package PHPDebugr
- * @subpackage type
+ * @subpackage main
  * @author Nikos Koutelidis nikoutel@gmail.com
  * @copyright 2013 Nikos Koutelidis 
  * @license http://www.mozilla.org/MPL/2.0/ Mozilla Public License Version 2.0
@@ -19,11 +19,19 @@
  * 
  */
 
-Class Type_IsDouble extends Type_IsScalar {
+final Class WriteOptions {
 
-    public function __construct(Output $output) {
-        parent::__construct();
-        $this->send($output);
+    const e = 'echoes';
+    const v = 'varDump';
+    const r = 'printR';
+    const c = 'custom';
+    const echoes = 'echoes';
+    const varDump = 'varDump';
+    const printR = 'printR';
+    const custom = 'custom';
+
+    private function __construct() {
+        
     }
 
 }
