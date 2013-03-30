@@ -160,10 +160,10 @@ Debugr::edbgConsole($book, '$book');
 ```
 will produce a console output:
 
-[![screenshot text](https://github.com/nikoutel/PHPDebugr/raw/master/path/screenshot.png)]
+![Screenshot Firebug](Screenshots/ScreenshotFirebug.png)
 
 ## Licence ##
-This software is licensed under the [MPL](LICENSE) 2.0:
+This software is licensed under the [MPL](http://www.mozilla.org/MPL/2.0/) 2.0:
 ```
     This Source Code Form is subject to the terms of the Mozilla Public
     License, v. 2.0. If a copy of the MPL was not distributed with this
