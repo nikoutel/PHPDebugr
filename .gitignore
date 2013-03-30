@@ -3,3 +3,4 @@ test*.php
 _info*
 _todo*
 ~*
+*.sh
