@@ -29,7 +29,12 @@
  */
 function PHPDebugr_autoload($class_name) {
     $class_file_path = str_replace('_', '/', $class_name) . '.php';
-    require(dirname(__FILE__) . '/' . $class_file_path);
+    $file = dirname(__FILE__) . '/' . $class_file_path;
+    if (true === file_exists($file)) {
+        require_once($file);
+        return true;
+    }
 }
+
 spl_autoload_register('PHPDebugr_autoload');
 ?>
