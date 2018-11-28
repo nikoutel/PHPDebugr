@@ -71,7 +71,7 @@ The value is formatted according to the variables type or the `writeOption` give
 
 ## Requirements ##
 
-Required PHP 5.1.2 (min)
+Required PHP 5.3 (min)
 
 ## Examples ##
 
