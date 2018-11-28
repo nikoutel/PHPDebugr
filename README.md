@@ -81,86 +81,86 @@ require('path/to/Debugr/DebugrLoad.php');
 ```
 
 >
-```php
-$varB = 42;
-Debugr::edbg($varB);
-```
-42
+> ```php
+> $varB = 42;
+> Debugr::edbg($varB);
+> ```
+> 42
 
 <br />
-> 
-```php
-$varC = 103993/33102;
-Debugr::edbg($varC, 'the value of pi is');
-```
-the value of pi is: 3.1415926530119
+
+> ```php
+> $varC = 103993/33102;
+> Debugr::edbg($varC, 'the value of pi is');
+> ```
+> the value of pi is: 3.1415926530119
 
 <br />
-> 
-```php
-$varA = 'Guru Meditation';
-Debugr::edbg($varA, NULL, 'v');
-```
-string(15) "Guru Meditation"
+
+> ```php
+> $varA = 'Guru Meditation';
+> Debugr::edbg($varA, NULL, 'v');
+> ```
+> string(15) "Guru Meditation"
 
 <br /> 
-> 
-```php
-$varE = array(
-    'black jack',
-    'gin rummy',
-    'hearts',
-    'bridge',
-    'checkers',
-    'cess',
-    'global thermonuclear war');
-Debugr::edbg($varE, 'Shall we play a game?','r');
-```
-<pre>
->Shall we play a game?:
-Array
-(
-    [0] => black jack
-    [1] => gin rummy
-    [2] => hearts
-    [3] => bridge
-    [4] => checkers
-    [5] => cess
-    [6] => global thermonuclear war
-)
-</pre>
+
+> ```php
+> $varE = array(
+>     'black jack',
+>     'gin rummy',
+>     'hearts',
+>     'bridge',
+>     'checkers',
+>     'cess',
+>     'global thermonuclear war');
+> Debugr::edbg($varE, 'Shall we play a game?','r');
+> ```
+> <pre>
+> >Shall we play a game?:
+> Array
+> (
+>     [0] => black jack
+>     [1] => gin rummy
+>     [2] => hearts
+>     [3] => bridge
+>     [4] => checkers
+>     [5] => cess
+>     [6] => global thermonuclear war
+> )
+> </pre>
 
 <br />
+
+> ```php
+> $varF = fopen('secretFile.xml', 'r');
+> Debugr::edbgLog($varF);
+> fclose($varF);
+> Debugr::edbgLog($varF);
+> ```
+> will produce a log file entry:
 > 
-```php
-$varF = fopen('secretFile.xml', 'r');
-Debugr::edbgLog($varF);
-fclose($varF);
-Debugr::edbgLog($varF);
-```
-will produce a log file entry:
-
-```
-(13/07/2004 11:23:58) /TestOOP/Debug/example.php
-resource(19) of type (stream)
-
-(13/07/2004 11:23:58) /TestOOP/Debug/example.php
-resource(19) of type (Unknown)
-```
-
-<br /> 
+> ```
+> (13/07/2004 11:23:58) /TestOOP/Debug/example.php
+> resource(19) of type (stream)
 > 
-```php
-$book = new stdClass;
-$book->php = 'PHP Design Patterns, Stephan Schmidt';
-$book->c = 'The C Programming Language, Kernighan & Ritchie';
-$book->unix = 'The unix programming environment, Kernighan & Pike';
-$book->economics = 'Making Millions For Dummies';
-Debugr::edbgConsole($book, '$book');
-```
-will produce a console output:
+> (13/07/2004 11:23:58) /TestOOP/Debug/example.php
+> resource(19) of type (Unknown)
+> ```
 
-![Screenshot Firebug](Screenshots/ScreenshotFirebug.png)
+
+
+> ```php
+> $book = new stdClass;
+> $book->php = 'PHP Design Patterns, Stephan Schmidt';
+> $book->c = 'The C Programming Language, Kernighan & > Ritchie';
+> $book->unix = 'The unix programming environment, > Kernighan & Pike';
+> $book->economics = 'Making Millions For Dummies';
+> Debugr::edbgConsole($book, '$book');
+> ```
+> will produce a console output:
+> 
+> ![Screenshot Firebug](Screenshots/ScreenshotFirebug.png)
 
 ## Licence ##
 This software is licensed under the [MPL](http://www.mozilla.org/MPL/2.0/) 2.0:
@@ -169,4 +169,5 @@ This software is licensed under the [MPL](http://www.mozilla.org/MPL/2.0/) 2.0:
     License, v. 2.0. If a copy of the MPL was not distributed with this
     file, You can obtain one at http://mozilla.org/MPL/2.0/.
 ```
+
 
