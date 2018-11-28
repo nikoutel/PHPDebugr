@@ -19,6 +19,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. 
  * 
  */
+require 'DebugrLoad.php';
 
 Class Debugr {
 

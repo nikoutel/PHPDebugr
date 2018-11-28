@@ -77,7 +77,7 @@ Required PHP 5.3 (min)
 
 
 ```php
-require('path/to/Debugr/DebugrLoad.php');
+require('path/to/Debugr/Debugr.php');
 ```
 
 >
