@@ -27,7 +27,9 @@
  *  
  * @param string $className
  */
-function PHPDebugr_autoload($className) {
+function PHPDebugr_autoload($className) { 
+
+    $debugrPath = dirname(dirname(__FILE__));
     $className = ltrim($className, '\\');
     $fileName  = '';
     $namespace = '';
@@ -37,8 +39,11 @@ function PHPDebugr_autoload($className) {
         $fileName  = str_replace('\\', DIRECTORY_SEPARATOR, $namespace) . DIRECTORY_SEPARATOR;
     }
     $fileName .= str_replace('_', DIRECTORY_SEPARATOR, $className) . '.php';
-
-    require $fileName;
+    $file = $debugrPath . DIRECTORY_SEPARATOR . $fileName;
+    if (true === file_exists($file)) {
+        require($file);
+        return true;
+    }
 }
 
 spl_autoload_register('PHPDebugr_autoload');
