@@ -19,6 +19,9 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. 
  * 
  */
+
+namespace Debugr;
+
 require 'DebugrLoad.php';
 
 Class Debugr {
@@ -29,7 +32,7 @@ Class Debugr {
      * @var mixed 
      */
     private static $_debugVar;
-    
+
     /**
      * Text describing the variable
      * 
@@ -65,7 +68,6 @@ Class Debugr {
      * @param string $writeOption
      */
     public static function eDbg($debugVar, $debugText = "", $writeOption = "") {
-
 
         $defaultOutput = config::$config['defaultOutput'];
         if ($defaultOutput != 'None') {
@@ -105,7 +107,7 @@ Class Debugr {
         if (!config::$config['disabled'])
             self::_eDbgOut($debugVar, $debugText, $writeOption, 'Log');
     }
-    
+
     /**
      * Calling method for PHPDebugr
      * 
@@ -138,10 +140,10 @@ Class Debugr {
         self::$_debugText = $debugText;
 
         $isType = self::_getClassNameByType(self::$_debugVar);
-        $output = 'Output_' . $outputOption;
 
         $writer = new Writer();
-        $output = new $output($writeOption, $writer);
+        $namespacedOutput = __NAMESPACE__ . '\\Output\\' . $outputOption;
+        $output = new $namespacedOutput($writeOption, $writer);
         $type = new $isType($output);
     }
 
@@ -152,10 +154,12 @@ Class Debugr {
      * @return string
      */
     private static function _getClassNameByType($debugVar) {
+
         $type = ucwords(strtolower(gettype($debugVar)));
         $type = str_replace(" ", "", $type);
-        $type = 'Type_Is' . $type;
-        return $type;
+        $type = 'Is' . $type;
+        $namespacedType = __NAMESPACE__ . '\\Type\\' . $type;
+        return $namespacedType;
     }
 
 }

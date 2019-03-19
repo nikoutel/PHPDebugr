@@ -19,7 +19,12 @@
  * 
  */
 
-Class Type_IsComposite extends Type {
+namespace Debugr\Type;
+
+use Debugr\Type;
+use Debugr\Output;
+
+Class IsComposite extends Type {
 
     public function __construct() {
         parent::__construct();

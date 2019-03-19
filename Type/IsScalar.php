@@ -19,7 +19,12 @@
  * 
  */
 
-Class Type_IsScalar extends Type {
+namespace Debugr\Type;
+
+use Debugr\Type;
+use Debugr\Output;
+
+Class IsScalar extends Type {
 
     public function __construct() {
         parent::__construct();

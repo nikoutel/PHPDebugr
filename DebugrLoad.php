@@ -27,7 +27,9 @@
  *  
  * @param string $className
  */
-function PHPDebugr_autoload($className) { 
+namespace Debugr;
+
+function PHPDebugr_autoload($className) {
 
     $debugrPath = dirname(dirname(__FILE__));
     $className = ltrim($className, '\\');
@@ -46,5 +48,5 @@ function PHPDebugr_autoload($className) {
     }
 }
 
-spl_autoload_register('PHPDebugr_autoload');
+spl_autoload_register(__NAMESPACE__ . '\PHPDebugr_autoload');
 ?>

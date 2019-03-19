@@ -19,6 +19,8 @@
  * 
  */
 
+namespace Debugr;
+
 final Class OutputOptions {
 
     const Screen = 'Screen';

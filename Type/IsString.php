@@ -19,7 +19,11 @@
  * 
  */
 
-Class Type_IsString extends Type_IsScalar {
+namespace Debugr\Type;
+
+use Debugr\Output;
+
+Class IsString extends IsScalar {
 
     public function __construct(Output $output) {
         parent::__construct();

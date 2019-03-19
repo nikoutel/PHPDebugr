@@ -20,7 +20,13 @@
  * 
  */
 
-Class Output_Console implements Output {
+namespace Debugr\Output;
+
+use Debugr\Output;
+use Debugr\Writer;
+use Debugr\config;
+
+Class Console implements Output {
 
             
     /**
@@ -63,7 +69,7 @@ Class Output_Console implements Output {
         $this->_writer = $writer;
         try {
             $this->_writeMethod = $this->_writer->getWriteMethod($writeOptionFlag);
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             echo $e->getMessage();
         }
     }

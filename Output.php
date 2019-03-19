@@ -19,6 +19,8 @@
  * 
  */
 
+namespace Debugr;
+
 interface Output {
 
     /**

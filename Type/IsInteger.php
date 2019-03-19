@@ -19,7 +19,11 @@
  * 
  */
 
-Class Type_IsInteger extends Type_IsScalar {
+namespace Debugr\Type;
+
+use Debugr\Output;
+
+Class IsInteger extends IsScalar {
 
     public function __construct(Output $output) {
         parent::__construct();

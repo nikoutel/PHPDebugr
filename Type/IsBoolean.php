@@ -19,7 +19,11 @@
  * 
  */
 
-Class Type_IsBoolean extends Type_IsComposite {
+namespace Debugr\Type;
+
+use Debugr\Output;
+
+Class IsBoolean extends IsComposite {
 
     public function __construct(Output $output) {
         parent::__construct();

@@ -19,6 +19,8 @@
  * 
  */
 
+namespace Debugr;
+
 Class Writer {
 
     /**
@@ -26,24 +28,25 @@ Class Writer {
      * 
      * @param string $writeOptionFlag
      * @return string
-     * @throws InvalidArgumentException
+     * @throws \InvalidArgumentException
      */
+
     public function getWriteMethod($writeOptionFlag) {
         if ($writeOptionFlag != '') {
 
-            $reflCl = new ReflectionClass('WriteOptions');
+            $reflCl = new \ReflectionClass('Debugr\WriteOptions');
             $bitArray = $reflCl->getConstants();
 
             $str = implode(",", array_keys($bitArray));
             if (array_key_exists($writeOptionFlag, $bitArray)) {
-                $optstr = '$option = WriteOptions::' . $writeOptionFlag . ';';
+                $optstr = '$option = Debugr\WriteOptions::' . $writeOptionFlag . ';';
                 eval($optstr);
                 return $option;
             } else {
                 $errorMsg = 'Invalid argument - ';
                 $errorMsg .= 'valid options: [' . implode(", ", array_keys($bitArray)) . '] - ';
                 $errorMsg .= 'Default used';
-                throw new InvalidArgumentException($errorMsg);
+                throw new \InvalidArgumentException($errorMsg);
             }
         }
     }

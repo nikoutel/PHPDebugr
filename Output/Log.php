@@ -2,68 +2,74 @@
 
 /**
  *
- * Output_Log: Outputs to the log file using 
+ * Output_Log: Outputs to the log file using
  * the 'write methods' provided by 'Writer'
- * 
- * 
+ *
+ *
  * @package PHPDebugr
  * @subpackage output
  * @author Nikos Koutelidis nikoutel@gmail.com
- * @copyright 2013 Nikos Koutelidis 
+ * @copyright 2013 Nikos Koutelidis
  * @license http://www.mozilla.org/MPL/2.0/ Mozilla Public License Version 2.0
- * @link https://github.com/nikoutel/PHPDebugr 
- * 
- * 
+ * @link https://github.com/nikoutel/PHPDebugr
+ *
+ *
  * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
- * file, You can obtain one at http://mozilla.org/MPL/2.0/. 
- * 
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+ *
  */
 
-Class Output_Log implements Output {
+namespace Debugr\Output;
+
+use Debugr\Output;
+use Debugr\Writer;
+use Debugr\config;
+
+Class Log implements Output {
 
     /**
-     * @var mixed 
+     * @var mixed
      */
     private $_debugVar;
-    
+
     /**
-     * @var string 
+     * @var string
      */
     private $_debugText;
-        
+
     /**
-     * @var string 
+     * @var string
      */
     private $_writeMethod;
-            
+
     /**
-     * @var string 
+     * @var string
      */
     private $_defaultWriteMethodScalar;
-            
+
     /**
-     * @var string 
+     * @var string
      */
     private $_defaultWriteMethodComposite;
-            
+
     /**
-     * @var Writer 
+     * @var Writer
      */
     private $_writer;
-            
+
     /**
-     * @var string 
+     * @var string
      */
     private $_preText;
-            
+
     /**
-     * @var string 
+     * @var string
      */
     private $_filename;
 
     /**
-     * 
+     *
      * @param string $writeOptionFlag
      * @param Writer $writer
      */
@@ -72,14 +78,14 @@ Class Output_Log implements Output {
         $this->_writer = $writer;
         try {
             $this->_writeMethod = $this->_writer->getWriteMethod($writeOptionFlag);
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             echo $e->getMessage();
         }
         $this->_filename = config::$config['logFile'];
     }
 
     /**
-     * 
+     *
      * @return string
      */
     private function _getPreText() {
@@ -91,7 +97,7 @@ Class Output_Log implements Output {
 
     /**
      * Outputs to the log file using formatting specific for scalar types
-     * 
+     *
      * @param mixed $debugVar
      * @param string $debugText
      */
@@ -126,7 +132,7 @@ Class Output_Log implements Output {
 
     /**
      * Outputs to the log file using formatting specific for composite types
-     * 
+     *
      * @param mixed $debugVar
      * @param string $debugText
      */

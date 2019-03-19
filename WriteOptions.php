@@ -19,6 +19,8 @@
  * 
  */
 
+namespace Debugr;
+
 final Class WriteOptions {
 
     const e = 'echoes';

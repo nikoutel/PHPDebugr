@@ -20,33 +20,39 @@
  * 
  */
 
-Class Output_Screen implements Output {
+namespace Debugr\Output;
+
+use Debugr\Output;
+use Debugr\Writer;
+use Debugr\config;
+
+Class Screen implements Output {
 
     /**
      * @var mixed 
      */
     private $_debugVar;
-    
+
     /**
      * @var string 
      */
     private $_debugText;
-    
+
     /**
      * @var string 
      */
     private $_writeMethod;
-    
+
     /**
      * @var string 
      */
     private $_defaultWriteMethodScalar;
-    
+
     /**
      * @var string 
      */
     private $_defaultWriteMethodComposite;
-    
+
     /**
      * @var Writer 
      */
@@ -62,7 +68,7 @@ Class Output_Screen implements Output {
         $this->_writer = $writer;
         try {
             $this->_writeMethod = $this->_writer->getWriteMethod($writeOptionFlag);
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             echo $e->getMessage();
         }
     }
@@ -86,7 +92,7 @@ Class Output_Screen implements Output {
 
         if ($this->_debugText != "") {
             $prefix = $this->_debugText . ': ';
-        }else
+        } else
             $prefix = "";
 
         echo '<pre>';
@@ -114,7 +120,7 @@ Class Output_Screen implements Output {
 
         if ($this->_debugText != "") {
             $prefix = $this->_debugText . ':<br />';
-        }else
+        } else
             $prefix = "";
 
         echo '<pre>';

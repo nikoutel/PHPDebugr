@@ -20,6 +20,8 @@
  * 
  */
 
+namespace Debugr;
+
 abstract Class Type {
 
     /**
