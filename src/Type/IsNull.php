@@ -2,12 +2,11 @@
 
 /**
  *
- * Type: abstract; Sets the variables to be inherited and defines
- * the methods for the type classes
+ * Type_IsNull: Sends NULLs to output
  * 
  * 
  * @package PHPDebugr
- * @subpackage main
+ * @subpackage type
  * @author Nikos Koutelidis nikoutel@gmail.com
  * @copyright 2013 Nikos Koutelidis 
  * @license http://www.mozilla.org/MPL/2.0/ Mozilla Public License Version 2.0
@@ -20,26 +19,17 @@
  * 
  */
 
-namespace Debugr;
+namespace Nikoutel\Debugr\Type;
 
-abstract Class Type {
+use Nikoutel\Debugr\Output;
 
-    /**
-     * @var mixed 
-     */
-    protected $_debugVar;
-    
-    /**
-     * @var string 
-     */
-    protected $_debugText;
+Class IsNull extends IsComposite {
 
-    public function __construct() {
-        $this->_debugVar = Debugr::getDebugVar();
-        $this->_debugText = Debugr::getDebugText();
+    public function __construct(Output $output) {
+        parent::__construct();
+        $this->send($output);
     }
 
-    abstract public function send(Output $output);
 }
 
 ?>

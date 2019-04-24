@@ -2,7 +2,7 @@
 
 /**
  *
- * Type_IsBoolean: Sends booleans to output
+ * Type_IsString: Sends strings to output
  * 
  * 
  * @package PHPDebugr
@@ -19,11 +19,11 @@
  * 
  */
 
-namespace Debugr\Type;
+namespace Nikoutel\Debugr\Type;
 
-use Debugr\Output;
+use Nikoutel\Debugr\Output;
 
-Class IsBoolean extends IsComposite {
+Class IsString extends IsScalar {
 
     public function __construct(Output $output) {
         parent::__construct();

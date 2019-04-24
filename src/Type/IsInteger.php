@@ -2,7 +2,7 @@
 
 /**
  *
- * Type_IsComposite: Sends composite types to output
+ * Type_IsInteger: Sends integers to output
  * 
  * 
  * @package PHPDebugr
@@ -19,24 +19,15 @@
  * 
  */
 
-namespace Debugr\Type;
+namespace Nikoutel\Debugr\Type;
 
-use Debugr\Type;
-use Debugr\Output;
+use Nikoutel\Debugr\Output;
 
-Class IsComposite extends Type {
+Class IsInteger extends IsScalar {
 
-    public function __construct() {
+    public function __construct(Output $output) {
         parent::__construct();
-    }
-
-    /**
-     * Sends composite var and description text to Output
-     * 
-     * @param Output $output
-     */
-    public function send(Output $output) {
-        $output->outputComposite($this->_debugVar, $this->_debugText);
+        $this->send($output);
     }
 
 }

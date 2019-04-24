@@ -2,7 +2,7 @@
 
 /**
  *
- * Type_IsResource: Sends resources to output
+ * Type_IsObject: Sends objects to output
  * 
  * 
  * @package PHPDebugr
@@ -19,11 +19,11 @@
  * 
  */
 
-namespace Debugr\Type;
+namespace Nikoutel\Debugr\Type;
 
-use Debugr\Output;
+use Nikoutel\Debugr\Output;
 
-Class IsResource extends IsComposite {
+Class IsObject extends IsComposite {
 
     public function __construct(Output $output) {
         parent::__construct();

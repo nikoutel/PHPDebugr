@@ -19,7 +19,7 @@
  * 
  */
 
-namespace Debugr;
+namespace Nikoutel\Debugr;
 
 Class Writer {
 

@@ -2,11 +2,11 @@
 
 /**
  *
- * OutputOptions:  Enumerates the output options
+ * Type_IsBoolean: Sends booleans to output
  * 
  * 
  * @package PHPDebugr
- * @subpackage main
+ * @subpackage type
  * @author Nikos Koutelidis nikoutel@gmail.com
  * @copyright 2013 Nikos Koutelidis 
  * @license http://www.mozilla.org/MPL/2.0/ Mozilla Public License Version 2.0
@@ -19,17 +19,15 @@
  * 
  */
 
-namespace Debugr;
+namespace Nikoutel\Debugr\Type;
 
-final Class OutputOptions {
+use Nikoutel\Debugr\Output;
 
-    const Screen = 'Screen';
-    const Log = 'Log';
-    const Console = 'Console';
-    const None = 'None';
+Class IsBoolean extends IsComposite {
 
-    private function __construct() {
-        
+    public function __construct(Output $output) {
+        parent::__construct();
+        $this->send($output);
     }
 
 }

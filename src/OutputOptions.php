@@ -2,11 +2,11 @@
 
 /**
  *
- * Type_IsUnknownType: Sends "unknown types" to output
+ * OutputOptions:  Enumerates the output options
  * 
  * 
  * @package PHPDebugr
- * @subpackage type
+ * @subpackage main
  * @author Nikos Koutelidis nikoutel@gmail.com
  * @copyright 2013 Nikos Koutelidis 
  * @license http://www.mozilla.org/MPL/2.0/ Mozilla Public License Version 2.0
@@ -19,15 +19,17 @@
  * 
  */
 
-namespace Debugr\Type;
+namespace Nikoutel\Debugr;
 
-use Debugr\Output;
+final Class OutputOptions {
 
-Class IsUnknownType extends IsComposite {
+    const Screen = 'Screen';
+    const Log = 'Log';
+    const Console = 'Console';
+    const None = 'None';
 
-    public function __construct(Output $output) {
-        parent::__construct();
-        $this->send($output);
+    private function __construct() {
+        
     }
 
 }

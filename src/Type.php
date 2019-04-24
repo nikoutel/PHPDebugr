@@ -2,11 +2,12 @@
 
 /**
  *
- * Type_IsObject: Sends objects to output
+ * Type: abstract; Sets the variables to be inherited and defines
+ * the methods for the type classes
  * 
  * 
  * @package PHPDebugr
- * @subpackage type
+ * @subpackage main
  * @author Nikos Koutelidis nikoutel@gmail.com
  * @copyright 2013 Nikos Koutelidis 
  * @license http://www.mozilla.org/MPL/2.0/ Mozilla Public License Version 2.0
@@ -19,17 +20,26 @@
  * 
  */
 
-namespace Debugr\Type;
+namespace Nikoutel\Debugr;
 
-use Debugr\Output;
+abstract Class Type {
 
-Class IsObject extends IsComposite {
+    /**
+     * @var mixed 
+     */
+    protected $_debugVar;
+    
+    /**
+     * @var string 
+     */
+    protected $_debugText;
 
-    public function __construct(Output $output) {
-        parent::__construct();
-        $this->send($output);
+    public function __construct() {
+        $this->_debugVar = Debugr::getDebugVar();
+        $this->_debugText = Debugr::getDebugText();
     }
 
+    abstract public function send(Output $output);
 }
 
 ?>

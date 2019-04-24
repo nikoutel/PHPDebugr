@@ -2,7 +2,7 @@
 
 /**
  *
- * Output_Console: Outputs to the console using 
+ * Output_Screen: Outputs to screen using 
  * the 'write methods' provided by 'Writer'
  * 
  * 
@@ -20,40 +20,39 @@
  * 
  */
 
-namespace Debugr\Output;
+namespace Nikoutel\Debugr\Output;
 
-use Debugr\Output;
-use Debugr\Writer;
-use Debugr\config;
+use Nikoutel\Debugr\Output;
+use Nikoutel\Debugr\Writer;
+use Nikoutel\Debugr\config;
 
-Class Console implements Output {
+Class Screen implements Output {
 
-            
     /**
      * @var mixed 
      */
     private $_debugVar;
-            
+
     /**
      * @var string 
      */
     private $_debugText;
-            
+
     /**
      * @var string 
      */
     private $_writeMethod;
-            
+
     /**
      * @var string 
      */
     private $_defaultWriteMethodScalar;
-            
+
     /**
      * @var string 
      */
     private $_defaultWriteMethodComposite;
-            
+
     /**
      * @var Writer 
      */
@@ -75,13 +74,14 @@ Class Console implements Output {
     }
 
     /**
-     * Outputs to the console using formatting specific for scalar types
+     * Outputs to screen using formatting specific for scalar types
      * 
      * @param mixed $debugVar
      * @param string $debugText
      */
     public function outputScalar($debugVar, $debugText) {
-        $this->_defaultWriteMethodScalar = config::$config['defaultWriteMethodScalar']['Console'];
+
+        $this->_defaultWriteMethodScalar = config::$config['defaultWriteMethodScalar']['Screen'];
         if ($this->_writeMethod == '')
             $this->_writeMethod = $this->_defaultWriteMethodScalar;
 
@@ -91,29 +91,25 @@ Class Console implements Output {
         $this->_debugText = $debugText;
 
         if ($this->_debugText != "") {
-            $prefix = $this->_debugText . ": ";
-        }else
+            $prefix = $this->_debugText . ': ';
+        } else
             $prefix = "";
 
-        ob_start();
+        echo '<pre>';
         echo $prefix;
         $this->_writer->$writeOut($this->_debugVar);
-        $result = ob_get_clean();
-        $result = str_replace("\"", "\\\"", $result);
-        $result = str_replace("\n", "\\r\\n", $result);
-        echo '<script type="text/javascript">';
-        echo 'console.info("' . $result . '")';
-        echo '</script>';
+        echo '</pre>';
     }
 
     /**
-     * Outputs to the console using formatting specific for composite types
+     * Outputs to screen using formatting specific for composite types
      * 
      * @param mixed $debugVar
      * @param string $debugText
      */
     public function outputComposite($debugVar, $debugText) {
-        $this->_defaultWriteMethodComposite = config::$config['defaultWriteMethodComposite']['Console'];
+
+        $this->_defaultWriteMethodComposite = config::$config['defaultWriteMethodComposite']['Screen'];
         if ($this->_writeMethod == '')
             $this->_writeMethod = $this->_defaultWriteMethodComposite;
 
@@ -123,19 +119,14 @@ Class Console implements Output {
         $this->_debugText = $debugText;
 
         if ($this->_debugText != "") {
-            $prefix = $this->_debugText . ":\n ";
-        }else
+            $prefix = $this->_debugText . ':<br />';
+        } else
             $prefix = "";
 
-        ob_start();
+        echo '<pre>';
         echo $prefix;
         $this->_writer->$writeOut($this->_debugVar);
-        $result = ob_get_clean();
-        $result = str_replace("\"", "\\\"", $result);
-        $result = str_replace("\n", "\\r\\n", $result);
-        echo '<script type="text/javascript">';
-        echo 'console.info("' . $result . '")';
-        echo '</script>';
+        echo '</pre>';
     }
 
 }

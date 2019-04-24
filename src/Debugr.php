@@ -20,9 +20,14 @@
  * 
  */
 
-namespace Debugr;
+namespace Nikoutel\Debugr;
 
-require 'DebugrLoad.php';
+if( !class_exists('Composer\\Autoload\\ClassLoader') )
+{
+    // Manually include files if composer is not used.
+    require 'DebugrLoad.php';
+}
+
 
 Class Debugr {
 

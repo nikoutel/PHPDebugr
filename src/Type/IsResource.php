@@ -2,7 +2,7 @@
 
 /**
  *
- * Type_IsNull: Sends NULLs to output
+ * Type_IsResource: Sends resources to output
  * 
  * 
  * @package PHPDebugr
@@ -19,11 +19,11 @@
  * 
  */
 
-namespace Debugr\Type;
+namespace Nikoutel\Debugr\Type;
 
-use Debugr\Output;
+use Nikoutel\Debugr\Output;
 
-Class IsNull extends IsComposite {
+Class IsResource extends IsComposite {
 
     public function __construct(Output $output) {
         parent::__construct();

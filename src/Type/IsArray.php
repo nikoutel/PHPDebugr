@@ -2,7 +2,7 @@
 
 /**
  *
- * Type_IsDouble: Sends doubles to output
+ * Type_IsArray: Sends arrays to output
  * 
  * 
  * @package PHPDebugr
@@ -19,11 +19,11 @@
  * 
  */
 
-namespace Debugr\Type;
+namespace Nikoutel\Debugr\Type;
 
-use Debugr\Output;
+use Nikoutel\Debugr\Output;
 
-Class IsDouble extends IsScalar {
+Class IsArray extends IsComposite {
 
     public function __construct(Output $output) {
         parent::__construct();

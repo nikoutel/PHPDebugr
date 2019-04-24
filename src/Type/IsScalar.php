@@ -2,7 +2,7 @@
 
 /**
  *
- * Type_IsString: Sends strings to output
+ * Type_IsScalar: Sends scalar types to output
  * 
  * 
  * @package PHPDebugr
@@ -19,15 +19,24 @@
  * 
  */
 
-namespace Debugr\Type;
+namespace Nikoutel\Debugr\Type;
 
-use Debugr\Output;
+use Nikoutel\Debugr\Type;
+use Nikoutel\Debugr\Output;
 
-Class IsString extends IsScalar {
+Class IsScalar extends Type {
 
-    public function __construct(Output $output) {
+    public function __construct() {
         parent::__construct();
-        $this->send($output);
+    }
+
+    /**
+     * Sends scalar var and description text to Output
+     * 
+     * @param Output $output
+     */
+    public function send(Output $output) {
+        $output->outputScalar($this->_debugVar, $this->_debugText);
     }
 
 }
