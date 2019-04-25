@@ -39,8 +39,8 @@ Class Writer {
 
             $str = implode(",", array_keys($bitArray));
             if (array_key_exists($writeOptionFlag, $bitArray)) {
-                $optstr = '$option = Nikoutel\Debugr\WriteOptions::' . $writeOptionFlag . ';';
-                eval($optstr);
+                $optstr = 'Nikoutel\Debugr\WriteOptions::' . $writeOptionFlag;
+                $option = constant($optstr);
                 return $option;
             } else {
                 $errorMsg = 'Invalid argument - ';
