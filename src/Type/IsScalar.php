@@ -2,13 +2,13 @@
 
 /**
  *
- * Type_IsArray: Sends arrays to output
+ * Type_IsScalar: Sends scalar types to output
  * 
  * 
  * @package PHPDebugr
  * @subpackage type
  * @author Nikos Koutelidis nikoutel@gmail.com
- * @copyright 2013 Nikos Koutelidis 
+ * @copyright 2013-2019 Nikos Koutelidis
  * @license http://www.mozilla.org/MPL/2.0/ Mozilla Public License Version 2.0
  * @link https://github.com/nikoutel/PHPDebugr 
  * 
@@ -19,11 +19,24 @@
  * 
  */
 
-Class Type_IsArray extends Type_IsComposite {
+namespace Nikoutel\Debugr\Type;
 
-    public function __construct(Output $output) {
+use Nikoutel\Debugr\Type;
+use Nikoutel\Debugr\Output;
+
+Class IsScalar extends Type {
+
+    public function __construct() {
         parent::__construct();
-        $this->send($output);
+    }
+
+    /**
+     * Sends scalar var and description text to Output
+     * 
+     * @param Output $output
+     */
+    public function send(Output $output) {
+        $output->outputScalar($this->_debugVar, $this->_debugText);
     }
 
 }

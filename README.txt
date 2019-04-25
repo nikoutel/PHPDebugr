@@ -68,13 +68,13 @@ The value is formatted according to the variables type or the writeOption given.
 Requirements
 ------------
 
-Required PHP 5.1.2 (min)
+Required PHP 5.3 (min)
 
 
 Examples
 --------
 
-require('path/to/Debugr/DebugrLoad.php');
+require('path/to/Debugr/Debugr.php');
 $varB = 42; 
 Debugr::edbg($varB); 
 

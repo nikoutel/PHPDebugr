@@ -2,13 +2,13 @@
 
 /**
  *
- * Type_IsUnknownType: Sends "unknown types" to output
+ * Type_IsInteger: Sends integers to output
  * 
  * 
  * @package PHPDebugr
  * @subpackage type
  * @author Nikos Koutelidis nikoutel@gmail.com
- * @copyright 2013 Nikos Koutelidis 
+ * @copyright 2013-2019 Nikos Koutelidis
  * @license http://www.mozilla.org/MPL/2.0/ Mozilla Public License Version 2.0
  * @link https://github.com/nikoutel/PHPDebugr 
  * 
@@ -19,7 +19,11 @@
  * 
  */
 
-Class Type_IsUnknownType extends Type_IsComposite {
+namespace Nikoutel\Debugr\Type;
+
+use Nikoutel\Debugr\Output;
+
+Class IsInteger extends IsScalar {
 
     public function __construct(Output $output) {
         parent::__construct();

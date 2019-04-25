@@ -2,13 +2,13 @@
 
 /**
  *
- * OutputOptions:  Enumerates the output options
+ * Type_IsArray: Sends arrays to output
  * 
  * 
  * @package PHPDebugr
- * @subpackage main
+ * @subpackage type
  * @author Nikos Koutelidis nikoutel@gmail.com
- * @copyright 2013 Nikos Koutelidis 
+ * @copyright 2013-2019 Nikos Koutelidis
  * @license http://www.mozilla.org/MPL/2.0/ Mozilla Public License Version 2.0
  * @link https://github.com/nikoutel/PHPDebugr 
  * 
@@ -19,15 +19,15 @@
  * 
  */
 
-final Class OutputOptions {
+namespace Nikoutel\Debugr\Type;
 
-    const Screen = 'Screen';
-    const Log = 'Log';
-    const Console = 'Console';
-    const None = 'None';
+use Nikoutel\Debugr\Output;
 
-    private function __construct() {
-        
+Class IsArray extends IsComposite {
+
+    public function __construct(Output $output) {
+        parent::__construct();
+        $this->send($output);
     }
 
 }

@@ -2,13 +2,13 @@
 
 /**
  *
- * Type_IsInteger: Sends integers to output
+ * OutputOptions:  Enumerates the output options
  * 
  * 
  * @package PHPDebugr
- * @subpackage type
+ * @subpackage main
  * @author Nikos Koutelidis nikoutel@gmail.com
- * @copyright 2013 Nikos Koutelidis 
+ * @copyright 2013-2019 Nikos Koutelidis
  * @license http://www.mozilla.org/MPL/2.0/ Mozilla Public License Version 2.0
  * @link https://github.com/nikoutel/PHPDebugr 
  * 
@@ -19,11 +19,17 @@
  * 
  */
 
-Class Type_IsInteger extends Type_IsScalar {
+namespace Nikoutel\Debugr;
 
-    public function __construct(Output $output) {
-        parent::__construct();
-        $this->send($output);
+final Class OutputOptions {
+
+    const Screen = 'Screen';
+    const Log = 'Log';
+    const Console = 'Console';
+    const None = 'None';
+
+    private function __construct() {
+        
     }
 
 }
