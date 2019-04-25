@@ -34,12 +34,12 @@ Class Writer {
     public function getWriteMethod($writeOptionFlag) {
         if ($writeOptionFlag != '') {
 
-            $reflCl = new \ReflectionClass('Debugr\WriteOptions');
+            $reflCl = new \ReflectionClass('Nikoutel\Debugr\WriteOptions');
             $bitArray = $reflCl->getConstants();
 
             $str = implode(",", array_keys($bitArray));
             if (array_key_exists($writeOptionFlag, $bitArray)) {
-                $optstr = '$option = Debugr\WriteOptions::' . $writeOptionFlag . ';';
+                $optstr = '$option = Nikoutel\Debugr\WriteOptions::' . $writeOptionFlag . ';';
                 eval($optstr);
                 return $option;
             } else {
