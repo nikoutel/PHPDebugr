@@ -1,7 +1,7 @@
 PHPDebugr
 =========
 
-PHPDebugr is a debugging tool for inspecting variables.
+A debugging tool for inspecting variables.
 
 A quick and effective debugging tool/solution if you do not have access to (or don't want to use) a single-stepping debugger like xdebug. Powerful 'var_dump' replacement with logging capabilities and console support.
 
