@@ -2,13 +2,13 @@
 
 /**
  *
- * WriteOptions: Enumerates the 'write options'/'write methods'
+ * Type_IsString: Sends strings to output
  * 
  * 
  * @package PHPDebugr
- * @subpackage main
+ * @subpackage type
  * @author Nikos Koutelidis nikoutel@gmail.com
- * @copyright 2013 Nikos Koutelidis 
+ * @copyright 2013-2019 Nikos Koutelidis
  * @license http://www.mozilla.org/MPL/2.0/ Mozilla Public License Version 2.0
  * @link https://github.com/nikoutel/PHPDebugr 
  * 
@@ -19,19 +19,15 @@
  * 
  */
 
-final Class WriteOptions {
+namespace Nikoutel\Debugr\Type;
 
-    const e = 'echoes';
-    const v = 'varDump';
-    const r = 'printR';
-    const c = 'custom';
-    const echoes = 'echoes';
-    const varDump = 'varDump';
-    const printR = 'printR';
-    const custom = 'custom';
+use Nikoutel\Debugr\Output;
 
-    private function __construct() {
-        
+Class IsString extends IsScalar {
+
+    public function __construct(Output $output) {
+        parent::__construct();
+        $this->send($output);
     }
 
 }

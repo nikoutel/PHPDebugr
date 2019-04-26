@@ -3,81 +3,112 @@ PHPDebugr
 
 
 
-This is a debugger for inspecting values of variables.   
+**A debugging tool for inspecting variables.**
+
+A quick and effective debugging tool/solution if you do not have access to (or don't want to use) a single-stepping  debugger like xdebug. 
+Powerful 'var_dump' replacement with logging capabilities and console support.
 
 ## Usage ##
 
-**Debugr::eDbg**(mixed *$var* [, string *$description* [, string *$writeOption*]])
+<code>
+<b>Debugr::eDbg</b>(mixed <i>$var</i> [, string <i>$description</i> [, string <i>$writeOption</i>]])
+</code>&nbsp;
 
-`Debugr::eDbg` writes the value of `$var` and the `$description` text (optional) to the default output, defined in `config.php` , using the `$writeOption`.
-Possible options for the default output are:  `Screen`, `Log`, `Console`, and `None`.  
-*(The predefined value is Screen)*
+`Debugr::eDbg` writes the value of `$var` and the `$description` text *(optional)* to the output, defined in `config.php`, using the `$writeOption`.
+Possible options for the output are:  `Screen`, `Log`, `Console`, and `None`.  
+*(The predefined value is `Screen`)*\
+&nbsp;
+
+<code>
+<b>Debugr::eDbgScreen</b>(mixed <i>$var</i> [, string <i>$description</i> [, string <i>$writeOption</i>]])
+</code>&nbsp;
+
+`Debugr::eDbgScreen`  writes the value of `$var` to the screen regardless of the default `config.php` file entry\
+&nbsp;
+
+<code>
+<b>Debugr::eDbgLog</b>(mixed <i>$var</i> [, string <i>$description</i> [, string <i>$writeOption</i>]])
+</code>&nbsp;
+
+`Debugr::eDbgLog`  writes the value of `$var` to the log file defined in `config.php`\
+&nbsp;
+
+<code>
+<b>Debugr::eDbgConsole</b>(mixed <i>$var</i> [, string <i>$description</i> [, string <i>$writeOption</i>]])
+</code>&nbsp;
+
+`Debugr::eDbgConsole` writes the value of `$var` to the browsers console
 
 
-**Debugr::eDbgScreen**(mixed *$var* [, string *$description* [, string *$writeOption*]])
+### Parameters ###
 
-`Debugr::eDbgScreen`  writes the value of `$var` to the screen regardless of the default `config.php` file entry
+***var***
 
+The variable to inspect\
+&nbsp;
 
-**Debugr::eDbgLog**(mixed *$var* [, string *$description* [, string *$writeOption*]])
+***description***
+*(optional)*
 
-`Debugr::eDbgLog`  writes the value of `$var` to the log file defined in `config.php`
+Text to be displayd before the variable value e.g.   `The value of $thisVar is:`\
+&nbsp;
 
+***writeOption***
+*(optional)*
 
-**Debugr::eDbgConsole**(mixed *$var* [, string *$description* [, string *$writeOption*]])
-
-`Debugr::eDbgConsole` writes the value of `$var` to the browsers console/Firebug *(careful with that on live servers)*
-
-
-
-### var ###
-
-The variable to inspect
+The way the output is written/formatted:
 
 
-### description ###
-
-(optional)
-
-Text to be displayd before the variable value e.g.   `The value of $thisVar is:`
-
-### writeOption ###
-(optional)
-
-you can choose the way the output is written/formatted
-
-**options:**
+###### options: ######
 
 >
-'e' or 'echoes'  
-'v' or 'varDump'  
-'r' or 'printR'  
-'c' or 'custom'  not implemented (you can write your own)  
+`e` or `echoes` &ndash; *for `echo`-like output*  
+`v` or `varDump`  &ndash; *for `var_dump`-like output*  
+`r` or `printR` &ndash;  *for `print_r`-like output*  
 
-If you omit this the defaults are used. For scalar types *(integer, double, string)* the default is `echoes` and for composite types *(array, object, resource, boolean, null, unknown type*) the default is `varDump`. The defaults can be changed in the `config.php` file.  
-*(I know boolean is technically scalar and Null is well, Null but they are fitting better in the composite group)*
+If you omit this, the defaults are used. For scalar types *(integer, double, string)* the default is `echoes` and for composite types *(array, object, resource, boolean, null, unknown type*) the default is `varDump`. The defaults can be changed in the `config.php` file.  
+*(I know boolean is technically scalar and Null is, well, Null, but they are fitting better in the composite group)*
 
 ## Notes ##
 If `None` is used as the default output, `Debugr::eDbg` will not produce any output. This is not true for `eDbgScreen`, `eDbgLog`, `eDbgConsole`.
 You can disable all by settting: `disable:true` in `config.php`.  This is some sort of kill switch.
 
+## Install ##
+
+Composer or no composer? That is the question!
+
+**composer:**  
+```
+composer require nikoutel/phpdebugr
+```
+
+<br />
+
+**no composer:**  
+Just dump the files in you project and use as shown below.
+```php
+require('path/to/Debugr/src/Debugr.php');
+use Nikoutel\Debugr\Debugr;
+```
+
 ## How to use ##
 
-Use `eDbg` to output the variable values to the default output. On a developer server you can choose `Screen`, and then change it to `Log` for the live server. All `Debugr::eDbg` calls will now write to the log file instead of the screen.
+Use `eDbg` to output the variable values to the default output. On a developer server you can choose `Screen`. If you have to use it on a production server use `Log` and all `Debugr::eDbg` calls will now write to the log file instead of the screen.
 
-On some occasions you want a different output then the default e.g., when outputting a specific variable on screen breaks the site layout. In this case you can use `eDbgConsole` to use the browser console regardless of the default output. In the same way you can use `eDbgScreen`, `eDbgLog`, according to the situation and your needs.
+On some occasions e.g. when outputting a variable on screen breaks the site layout you can use `eDbgConsole` to use the browser console regardless of the default output. In the same way you can use `eDbgScreen`, `eDbgLog`, according to the situation and your needs.
 
 The value is formatted according to the variables type or the `writeOption` given.
 
 ## Requirements ##
 
-Required PHP 5.1.2 (min)
+Required PHP 5.3 (min)
 
 ## Examples ##
 
 
 ```php
-require('path/to/Debugr/DebugrLoad.php');
+require('path/to/Debugr/src/Debugr.php');
+use Nikoutel\Debugr\Debugr;
 ```
 
 >
@@ -141,10 +172,10 @@ require('path/to/Debugr/DebugrLoad.php');
 > will produce a log file entry:
 > 
 > ```
-> (13/07/2004 11:23:58) /TestOOP/Debug/example.php
+> (18/10/2017 17:23:58) /LondonBlue/Secret/getSecret.php
 > resource(19) of type (stream)
 > 
-> (13/07/2004 11:23:58) /TestOOP/Debug/example.php
+> (18/10/2017 17:23:58) /LondonBlue/Secret/getSecret.php
 > resource(19) of type (Unknown)
 > ```
 
@@ -153,17 +184,17 @@ require('path/to/Debugr/DebugrLoad.php');
 > ```php
 > $book = new stdClass;
 > $book->php = 'PHP Design Patterns, Stephan Schmidt';
-> $book->c = 'The C Programming Language, Kernighan & > Ritchie';
-> $book->unix = 'The unix programming environment, > Kernighan & Pike';
+> $book->c = 'The C Programming Language, Kernighan & Ritchie';
+> $book->unix = 'The unix programming environment, Kernighan & Pike';
 > $book->economics = 'Making Millions For Dummies';
 > Debugr::edbgConsole($book, '$book');
 > ```
 > will produce a console output:
 > 
-> ![Screenshot Firebug](Screenshots/ScreenshotFirebug.png)
+> ![Screenshot Console](Screenshots/ScreenshotConsole.png)
 
 ## Licence ##
-This software is licensed under the [MPL](http://www.mozilla.org/MPL/2.0/) 2.0:
+This software is licensed under the [MPL-2.0](http://www.mozilla.org/MPL/2.0/):
 ```
     This Source Code Form is subject to the terms of the Mozilla Public
     License, v. 2.0. If a copy of the MPL was not distributed with this

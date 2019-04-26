@@ -2,13 +2,13 @@
 
 /**
  *
- * Type_IsComposite: Sends composite types to output
+ * Type_IsNull: Sends NULLs to output
  * 
  * 
  * @package PHPDebugr
  * @subpackage type
  * @author Nikos Koutelidis nikoutel@gmail.com
- * @copyright 2013 Nikos Koutelidis 
+ * @copyright 2013-2019 Nikos Koutelidis
  * @license http://www.mozilla.org/MPL/2.0/ Mozilla Public License Version 2.0
  * @link https://github.com/nikoutel/PHPDebugr 
  * 
@@ -19,19 +19,15 @@
  * 
  */
 
-Class Type_IsComposite extends Type {
+namespace Nikoutel\Debugr\Type;
 
-    public function __construct() {
+use Nikoutel\Debugr\Output;
+
+Class IsNull extends IsComposite {
+
+    public function __construct(Output $output) {
         parent::__construct();
-    }
-
-    /**
-     * Sends composite var and description text to Output
-     * 
-     * @param Output $output
-     */
-    public function send(Output $output) {
-        $output->outputComposite($this->_debugVar, $this->_debugText);
+        $this->send($output);
     }
 
 }

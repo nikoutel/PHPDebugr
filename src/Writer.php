@@ -8,7 +8,7 @@
  * @package PHPDebugr
  * @subpackage main
  * @author Nikos Koutelidis nikoutel@gmail.com
- * @copyright 2013 Nikos Koutelidis 
+ * @copyright 2013-2019 Nikos Koutelidis
  * @license http://www.mozilla.org/MPL/2.0/ Mozilla Public License Version 2.0
  * @link https://github.com/nikoutel/PHPDebugr 
  * 
@@ -19,6 +19,8 @@
  * 
  */
 
+namespace Nikoutel\Debugr;
+
 Class Writer {
 
     /**
@@ -26,24 +28,25 @@ Class Writer {
      * 
      * @param string $writeOptionFlag
      * @return string
-     * @throws InvalidArgumentException
+     * @throws \InvalidArgumentException
      */
+
     public function getWriteMethod($writeOptionFlag) {
         if ($writeOptionFlag != '') {
 
-            $reflCl = new ReflectionClass('WriteOptions');
+            $reflCl = new \ReflectionClass('Nikoutel\Debugr\WriteOptions');
             $bitArray = $reflCl->getConstants();
 
             $str = implode(",", array_keys($bitArray));
             if (array_key_exists($writeOptionFlag, $bitArray)) {
-                $optstr = '$option = WriteOptions::' . $writeOptionFlag . ';';
-                eval($optstr);
+                $optstr = 'Nikoutel\Debugr\WriteOptions::' . $writeOptionFlag;
+                $option = constant($optstr);
                 return $option;
             } else {
                 $errorMsg = 'Invalid argument - ';
                 $errorMsg .= 'valid options: [' . implode(", ", array_keys($bitArray)) . '] - ';
                 $errorMsg .= 'Default used';
-                throw new InvalidArgumentException($errorMsg);
+                throw new \InvalidArgumentException($errorMsg);
             }
         }
     }

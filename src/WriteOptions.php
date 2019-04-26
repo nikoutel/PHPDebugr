@@ -2,13 +2,13 @@
 
 /**
  *
- * Type_IsBoolean: Sends booleans to output
+ * WriteOptions: Enumerates the 'write options'/'write methods'
  * 
  * 
  * @package PHPDebugr
- * @subpackage type
+ * @subpackage main
  * @author Nikos Koutelidis nikoutel@gmail.com
- * @copyright 2013 Nikos Koutelidis 
+ * @copyright 2013-2019 Nikos Koutelidis
  * @license http://www.mozilla.org/MPL/2.0/ Mozilla Public License Version 2.0
  * @link https://github.com/nikoutel/PHPDebugr 
  * 
@@ -19,11 +19,21 @@
  * 
  */
 
-Class Type_IsBoolean extends Type_IsComposite {
+namespace Nikoutel\Debugr;
 
-    public function __construct(Output $output) {
-        parent::__construct();
-        $this->send($output);
+final Class WriteOptions {
+
+    const e = 'echoes';
+    const v = 'varDump';
+    const r = 'printR';
+    const c = 'custom';
+    const echoes = 'echoes';
+    const varDump = 'varDump';
+    const printR = 'printR';
+    const custom = 'custom';
+
+    private function __construct() {
+        
     }
 
 }

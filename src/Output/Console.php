@@ -2,14 +2,14 @@
 
 /**
  *
- * Output_Screen: Outputs to screen using 
+ * Output_Console: Outputs to the console using 
  * the 'write methods' provided by 'Writer'
  * 
  * 
  * @package PHPDebugr
  * @subpackage output
  * @author Nikos Koutelidis nikoutel@gmail.com
- * @copyright 2013 Nikos Koutelidis 
+ * @copyright 2013-2019 Nikos Koutelidis
  * @license http://www.mozilla.org/MPL/2.0/ Mozilla Public License Version 2.0
  * @link https://github.com/nikoutel/PHPDebugr 
  * 
@@ -20,33 +20,40 @@
  * 
  */
 
-Class Output_Screen implements Output {
+namespace Nikoutel\Debugr\Output;
 
+use Nikoutel\Debugr\Output;
+use Nikoutel\Debugr\Writer;
+use Nikoutel\Debugr\config;
+
+Class Console implements Output {
+
+            
     /**
      * @var mixed 
      */
     private $_debugVar;
-    
+            
     /**
      * @var string 
      */
     private $_debugText;
-    
+            
     /**
      * @var string 
      */
     private $_writeMethod;
-    
+            
     /**
      * @var string 
      */
     private $_defaultWriteMethodScalar;
-    
+            
     /**
      * @var string 
      */
     private $_defaultWriteMethodComposite;
-    
+            
     /**
      * @var Writer 
      */
@@ -62,20 +69,19 @@ Class Output_Screen implements Output {
         $this->_writer = $writer;
         try {
             $this->_writeMethod = $this->_writer->getWriteMethod($writeOptionFlag);
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             echo $e->getMessage();
         }
     }
 
     /**
-     * Outputs to screen using formatting specific for scalar types
+     * Outputs to the console using formatting specific for scalar types
      * 
      * @param mixed $debugVar
      * @param string $debugText
      */
     public function outputScalar($debugVar, $debugText) {
-
-        $this->_defaultWriteMethodScalar = config::$config['defaultWriteMethodScalar']['Screen'];
+        $this->_defaultWriteMethodScalar = config::$config['defaultWriteMethodScalar']['Console'];
         if ($this->_writeMethod == '')
             $this->_writeMethod = $this->_defaultWriteMethodScalar;
 
@@ -85,25 +91,29 @@ Class Output_Screen implements Output {
         $this->_debugText = $debugText;
 
         if ($this->_debugText != "") {
-            $prefix = $this->_debugText . ': ';
+            $prefix = $this->_debugText . ": ";
         }else
             $prefix = "";
 
-        echo '<pre>';
+        ob_start();
         echo $prefix;
         $this->_writer->$writeOut($this->_debugVar);
-        echo '</pre>';
+        $result = ob_get_clean();
+        $result = str_replace("\"", "\\\"", $result);
+        $result = str_replace("\n", "\\r\\n", $result);
+        echo '<script type="text/javascript">';
+        echo 'console.info("' . $result . '")';
+        echo '</script>';
     }
 
     /**
-     * Outputs to screen using formatting specific for composite types
+     * Outputs to the console using formatting specific for composite types
      * 
      * @param mixed $debugVar
      * @param string $debugText
      */
     public function outputComposite($debugVar, $debugText) {
-
-        $this->_defaultWriteMethodComposite = config::$config['defaultWriteMethodComposite']['Screen'];
+        $this->_defaultWriteMethodComposite = config::$config['defaultWriteMethodComposite']['Console'];
         if ($this->_writeMethod == '')
             $this->_writeMethod = $this->_defaultWriteMethodComposite;
 
@@ -113,14 +123,19 @@ Class Output_Screen implements Output {
         $this->_debugText = $debugText;
 
         if ($this->_debugText != "") {
-            $prefix = $this->_debugText . ':<br />';
+            $prefix = $this->_debugText . ":\n ";
         }else
             $prefix = "";
 
-        echo '<pre>';
+        ob_start();
         echo $prefix;
         $this->_writer->$writeOut($this->_debugVar);
-        echo '</pre>';
+        $result = ob_get_clean();
+        $result = str_replace("\"", "\\\"", $result);
+        $result = str_replace("\n", "\\r\\n", $result);
+        echo '<script type="text/javascript">';
+        echo 'console.info("' . $result . '")';
+        echo '</script>';
     }
 
 }
