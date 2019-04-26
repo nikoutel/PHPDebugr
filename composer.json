@@ -1,5 +1,7 @@
 {
     "name": "nikoutel/phpdebugr",
+    "description": "A debugging tool for inspecting variables.",
+    "keywords": ["debugger","debugging","console","logging"],
     "license": "MPL-2.0",
     "authors": [
         {
