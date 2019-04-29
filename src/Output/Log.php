@@ -79,7 +79,7 @@ Class Log implements Output {
         try {
             $this->_writeMethod = $this->_writer->getWriteMethod($writeOptionFlag);
         } catch (\Exception $e) {
-            echo $e->getMessage();
+            error_log($e->getMessage());
         }
         $this->_filename = config::$config['logFile'];
     }
