@@ -29,6 +29,7 @@ Class Writer {
      * @param string $writeOptionFlag
      * @return string
      * @throws \InvalidArgumentException
+     * @throws \ReflectionException
      */
 
     public function getWriteMethod($writeOptionFlag) {
