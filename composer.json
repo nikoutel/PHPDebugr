@@ -9,7 +9,10 @@
             "email": "nikoutel@gmail.com"
         }
     ],
-    "require": {},
+    "require": {
+        "php" : ">=5.3",
+        "ext-mbstring": "*"
+    },
     "autoload": {
         "psr-4": {"Nikoutel\\Debugr\\": "src/"}
     }
