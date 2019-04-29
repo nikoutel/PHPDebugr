@@ -65,6 +65,8 @@ The way the output is written/formatted:
 `e` or `echoes` &ndash; *for `echo`-like output*  
 `v` or `varDump`  &ndash; *for `var_dump`-like output*  
 `r` or `printR` &ndash;  *for `print_r`-like output*  
+`x` or `export` &ndash;  *for `var_export`-like output*  
+
 
 If you omit this, the defaults are used. For scalar types *(integer, double, string)* the default is `echoes` and for composite types *(array, object, resource, boolean, null, unknown type*) the default is `varDump`. The defaults can be changed in the `config.php` file.  
 *(I know boolean is technically scalar and Null is, well, Null, but they are fitting better in the composite group)*

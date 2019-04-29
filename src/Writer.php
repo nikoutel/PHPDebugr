@@ -84,13 +84,12 @@ Class Writer {
     }
 
     /**
-     * The custom method is not implemented (you can write your own) 
      * 
      * @param mixed $var
      */
-    public static function custom($var) {
+    public static function export($var) {
         
-        //your code here
+        var_export($var);
     }
 
 }
