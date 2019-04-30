@@ -101,7 +101,7 @@ Requirements
 ------------
 
 * PHP 5.3 (min)
-* The "Multibyte String" php extension (mbstring)
+* (optional) The "Multibyte String" php extension (mbstring) - Allows multibyte characters to be used in log filenames
 
 
 Examples

@@ -202,13 +202,18 @@ Class Log implements Output {
     }
     /**
      * Sanitizing the filename string
-     * Allows only multibyte word, whitespace, number and the characters -_~,;[]().
+     * Allows only word, whitespace, number and the characters -_~,;[]().
+     * If the 'Multibyte String' extension is enabled, multibyte characters are also allowed
      *
      * @param string $filenameString
      * @return false|string
      */
     private function cleanFilenameString($filenameString) {
-        return mb_ereg_replace("([^\w\s\d\-_~,;\[\]\(\).])", '', $filenameString);
+        if (extension_loaded('mbstring')) {
+            return mb_ereg_replace("([^\w\s\d\-_~,;\[\]\(\).])", '', $filenameString);
+        } else {
+            return preg_replace( '/[^\w\s\d\-_~,;\[\]\(\).]/', '', $filenameString);
+        }
     }
 }
 
