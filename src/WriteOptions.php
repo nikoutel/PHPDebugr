@@ -26,11 +26,11 @@ final Class WriteOptions {
     const e = 'echoes';
     const v = 'varDump';
     const r = 'printR';
-    const c = 'custom';
+    const x = 'export';
     const echoes = 'echoes';
     const varDump = 'varDump';
     const printR = 'printR';
-    const custom = 'custom';
+    const export = 'export';
 
     private function __construct() {
         

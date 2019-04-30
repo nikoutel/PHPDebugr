@@ -13,13 +13,17 @@ Debugr::eDbg writes the value of $var and the $description text (optional) to th
 (The predefined value is Screen)
 
 Debugr::eDbgScreen(mixed $var [, string $description [, string $writeOption]])
-Debugr::eDbgScreen writes the value of $var to the screen regardless of the default config.php file entry
+Debugr::eDbgScreen writes the value of $var to the screen regardless of the default config.php file entry.
 
-Debugr::eDbgLog(mixed $var [, string $description [, string $writeOption]])
-Debugr::eDbgLog writes the value of $var to the log file defined in config.php
+Debugr::eDbgLog(mixed $var [, string $description [, string $writeOption [, sting|null $logFile]])
+Debugr::eDbgLog writes the value of $var to the log file defined in config.php, set through Debugr::setLogfile() or passed through the $logFile parameter.
 
 Debugr::eDbgConsole(mixed $var [, string $description [, string $writeOption]])
-Debugr::eDbgConsole writes the value of $var to the browsers console
+Debugr::eDbgConsole writes the value of $var to the browsers console.
+
+Debugr::setLogFile(string $logFile)
+Debugr::setLogFile sets the log file, overwriting the config.php file option.
+
 
 Parameters
 
@@ -30,7 +34,7 @@ The variable to inspect
 
 description (optional)
 
-Text to be displayd before the variable value e.g. The value of $thisVar is:
+Text to be displayed before the variable value e.g. The value of $thisVar is:
 
 
 writeOption (optional)
@@ -42,17 +46,38 @@ options:
 'e' or 'echoes' – for echo-like output
 'v' or 'varDump' – for var_dump-like output
 'r' or 'printR' – for print_r-like output
+'x' or 'export' – for var_export-like output
 
 If you omit this the defaults are used. For scalar types (integer, double, string) the default is echoes and for composite types (array, object, resource, boolean, null, unknown type) the default is varDump. The defaults can be changed in the config.php file.
 (I know boolean is technically scalar and Null is, well, Null, but they are fitting better in the composite group)
 
+Logging
+-----
+
+Output can be logged to a file by specifying Log as output in config.php or by calling Debugr::eDbgLog() directly.
+
+The log file used can be defined as follows:
+
+options:
+
+Configuration option inconfig.php
+    The default option. Predefined as output.log.
+
+Through Debugr::setLogfile()
+    Takes precedence over the config.php option.
+
+As 4th parameter of Debugr::eDbgLog()
+     Has the highest priority. Is only set for this call.
+
+(See example below)
 
 Notes
 -----
 
-If None is used as the default output, Debugr::eDbg will not produce any output. This is not true for eDbgScreen, eDbgLog, eDbgConsole. You can disable all by settting: disable:true in config.php. This is some sort of kill switch.
+If None is used as the default output, Debugr::eDbg will not produce any output. This is not true for eDbgScreen, eDbgLog, eDbgConsole. You can disable all by setting: disable:true in config.php. This is some sort of kill switch.
 
 Install
+-----
 
 Composer or no composer? That is the question!
 
@@ -75,12 +100,18 @@ The value is formatted according to the variables type or the writeOption given.
 Requirements
 ------------
 
-Required PHP 5.3 (min)
+* PHP 5.3 (min)
+* (optional) The "Multibyte String" php extension (mbstring) - Allows multibyte characters to be used in log filenames
 
 
 Examples
 --------
 
+// composer:
+require __DIR__ . '/vendor/autoload.php';
+use Nikoutel\Debugr\Debugr;
+
+// no composer:
 require('path/to/Debugr/src/Debugr.php');
 use Nikoutel\Debugr\Debugr;
 
@@ -102,7 +133,7 @@ Debugr::edbg($varA, NULL, 'v');
     string(15) "Guru Meditation"
 
 
-$varE = array( 'black jack', 'gin rummy', 'hearts', 'bridge', 'checkers', 'cess', 'global thermonuclear war'); 
+$varE = array( 'black jack', 'gin rummy', 'hearts', 'bridge', 'checkers', 'chess', 'global thermonuclear war');
 Debugr::edbg($varE, 'Shall we play a game?','r'); 
 
     Shall we play a game?:
@@ -113,7 +144,7 @@ Debugr::edbg($varE, 'Shall we play a game?','r');
         [2] => hearts
         [3] => bridge
         [4] => checkers
-        [5] => cess
+        [5] => chess
         [6] => global thermonuclear war
     )
 
@@ -132,6 +163,13 @@ Debugr::edbgLog($varF);
     resource(19) of type (Unknown)
 
 
+Debugr::edbgLog($varG);                         # writes to output.log defined in config.php
+Debugr::setLogFile(newOutput.log);
+Debugr::edbgLog($varH);                         # writes to newOutput.log
+Debugr::edbgLog($varI, 'v', 'prioOutput.log');  # writes to prioOutput.log
+Debugr::edbgLog($varJ);                         # writes to newOutput.log
+
+
 $book = new stdClass; 
 $book->php = 'PHP Design Patterns, Stephan Schmidt'; 
 $book->c = 'The C Programming Language, Kernighan & Ritchie'; 
@@ -141,7 +179,7 @@ Debugr::edbgConsole($book, '$book');
 will produce a console output
 
 
-Licence
+License
 -------
 
 This software is licensed under the MPL 2.0: This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0. If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
