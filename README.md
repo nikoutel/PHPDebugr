@@ -23,22 +23,29 @@ Possible options for the output are:  `Screen`, `Log`, `Console`, and `None`.
 <b>Debugr::eDbgScreen</b>(mixed <i>$var</i> [, string <i>$description</i> [, string <i>$writeOption</i>]])
 </code>&nbsp;
 
-`Debugr::eDbgScreen`  writes the value of `$var` to the screen regardless of the default `config.php` file entry\
+`Debugr::eDbgScreen`  writes the value of `$var` to the screen regardless of the default `config.php` file entry.\
 &nbsp;
 
 <code>
-<b>Debugr::eDbgLog</b>(mixed <i>$var</i> [, string <i>$description</i> [, string <i>$writeOption</i>]])
+<b>Debugr::eDbgLog</b>(mixed <i>$var</i> [, string <i>$description</i> [, string <i>$writeOption</i> [, sting|null <i>$logFile</i>]])
 </code>&nbsp;
 
-`Debugr::eDbgLog`  writes the value of `$var` to the log file defined in `config.php`\
+`Debugr::eDbgLog`  writes the value of `$var` to the log file defined in `config.php`, set through `Debugr::setLogfile()` or passed through the `$logFile` parameter.\
 &nbsp;
 
 <code>
 <b>Debugr::eDbgConsole</b>(mixed <i>$var</i> [, string <i>$description</i> [, string <i>$writeOption</i>]])
 </code>&nbsp;
 
-`Debugr::eDbgConsole` writes the value of `$var` to the browsers console
+`Debugr::eDbgConsole` writes the value of `$var` to the browsers console.\
+&nbsp;
 
+<code>
+<b>Debugr::setLogFile</b>(string $logFile)
+</code>&nbsp;
+
+`Debugr::setLogFile` sets the log file, overwriting the `config.php` file option.\
+&nbsp;
 
 ### Parameters ###
 
@@ -50,7 +57,7 @@ The variable to inspect\
 ***description***
 *(optional)*
 
-Text to be displayd before the variable value e.g.   `The value of $thisVar is:`\
+Text to be displayed before the variable value e.g.   `The value of $thisVar is:`\
 &nbsp;
 
 ***writeOption***
@@ -71,9 +78,29 @@ The way the output is written/formatted:
 If you omit this, the defaults are used. For scalar types *(integer, double, string)* the default is `echoes` and for composite types *(array, object, resource, boolean, null, unknown type*) the default is `varDump`. The defaults can be changed in the `config.php` file.  
 *(I know boolean is technically scalar and Null is, well, Null, but they are fitting better in the composite group)*
 
+## Logging ##
+
+Output can be logged to a file by specifying `Log` as output in `config.php` or by calling `Debugr::eDbgLog()` directly.
+
+The log file used can be defined as follows:
+
+###### options: ######
+
+
+* Configuration option in`config.php`\
+&nbsp;&nbsp;&nbsp;&nbsp;The default option. Predefined as `output.log`.
+
+* Through `Debugr::setLogfile()`\
+&nbsp;&nbsp;&nbsp;&nbsp;Takes precedence over the `config.php` option.
+
+* As 4th parameter of `Debugr::eDbgLog()`\
+&nbsp;&nbsp;&nbsp;&nbsp; Has the highest priority. Is only set for this call.
+
+(See example below)
+
 ## Notes ##
 If `None` is used as the default output, `Debugr::eDbg` will not produce any output. This is not true for `eDbgScreen`, `eDbgLog`, `eDbgConsole`.
-You can disable all by settting: `disable:true` in `config.php`.  This is some sort of kill switch.
+You can disable all by setting: `disable:true` in `config.php`.  This is some sort of kill switch.
 
 ## Install ##
 
@@ -103,12 +130,18 @@ The value is formatted according to the variables type or the `writeOption` give
 
 ## Requirements ##
 
-Required PHP 5.3 (min)
+* PHP 5.3 (min)
+* The "Multibyte String" php extension (mbstring)
 
 ## Examples ##
 
 
 ```php
+// composer:
+require __DIR__ . '/vendor/autoload.php';
+use Nikoutel\Debugr\Debugr;
+
+// no composer:
 require('path/to/Debugr/src/Debugr.php');
 use Nikoutel\Debugr\Debugr;
 ```
@@ -145,7 +178,7 @@ use Nikoutel\Debugr\Debugr;
 >     'hearts',
 >     'bridge',
 >     'checkers',
->     'cess',
+>     'chess',
 >     'global thermonuclear war');
 > Debugr::edbg($varE, 'Shall we play a game?','r');
 > ```
@@ -158,7 +191,7 @@ use Nikoutel\Debugr\Debugr;
 >     [2] => hearts
 >     [3] => bridge
 >     [4] => checkers
->     [5] => cess
+>     [5] => chess
 >     [6] => global thermonuclear war
 > )
 > </pre>
@@ -181,7 +214,18 @@ use Nikoutel\Debugr\Debugr;
 > resource(19) of type (Unknown)
 > ```
 
+<br />
 
+> ```php
+> Debugr::edbgLog($varG);                         # writes to output.log defined in config.php
+> Debugr::setLogFile(newOutput.log);
+> Debugr::edbgLog($varH);                         # writes to newOutput.log
+> Debugr::edbgLog($varI, 'v', 'prioOutput.log');  # writes to prioOutput.log
+> Debugr::edbgLog($varJ);                         # writes to newOutput.log
+>
+> ```
+
+<br />
 
 > ```php
 > $book = new stdClass;
@@ -195,7 +239,7 @@ use Nikoutel\Debugr\Debugr;
 > 
 > ![Screenshot Console](Screenshots/ScreenshotConsole.png)
 
-## Licence ##
+## License ##
 This software is licensed under the [MPL-2.0](http://www.mozilla.org/MPL/2.0/):
 ```
     This Source Code Form is subject to the terms of the Mozilla Public

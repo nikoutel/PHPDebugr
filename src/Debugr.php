@@ -46,6 +46,20 @@ Class Debugr {
     private static $_debugText;
 
     /**
+     * Log filename
+     *
+     * @var string
+     */
+    private static $_logFile;
+
+    /**
+     * Log filename with priority
+     *
+     * @var string
+     */
+    private static $_logFilePrio;
+
+    /**
      * Returns the variable to be inspected
      * 
      * @return mixed
@@ -106,10 +120,14 @@ Class Debugr {
      * @param mixed $debugVar
      * @param string $debugText
      * @param string $writeOption
+     * @param string|null $logFile
      */
-    public static function eDbgLog($debugVar, $debugText = "", $writeOption = "") {
+    public static function eDbgLog($debugVar, $debugText = "", $writeOption = "", $logFile = null) {
 
         if (!config::$config['disabled'])
+            if (isset($logFile)){
+                self::$_logFilePrio = $logFile;
+            }
             self::_eDbgOut($debugVar, $debugText, $writeOption, 'Log');
     }
 
@@ -149,7 +167,23 @@ Class Debugr {
         $writer = new Writer();
         $namespacedOutput = __NAMESPACE__ . '\\Output\\' . $outputOption;
         $output = new $namespacedOutput($writeOption, $writer);
+
+        if ($outputOption == 'Log' && isset(self::$_logFilePrio)) {
+            $output -> setLogFile(self::$_logFilePrio);
+            self::$_logFilePrio = null;
+        } elseif ($outputOption == 'Log' && isset(self::$_logFile)) {
+            $output -> setLogFile(self::$_logFile);
+        }
         $type = new $isType($output);
+    }
+
+    /**
+     * Calling method to set the log filename programmatically
+     *
+     * @param string $logFile
+     */
+    public static function setLogFile($logFile) {
+        self::$_logFile = $logFile;
     }
 
     /**

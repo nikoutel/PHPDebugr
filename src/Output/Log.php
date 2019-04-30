@@ -81,7 +81,9 @@ Class Log implements Output {
         } catch (\Exception $e) {
             error_log($e->getMessage());
         }
-        $this->_filename = config::$config['logFile'];
+        if (!isset($this->_filename)) {
+            $this->_filename = $this->checkLogFile(config::$config['logFile']);
+        }
     }
 
     /**
@@ -93,6 +95,14 @@ Class Log implements Output {
         $requestFile = $_SERVER['REQUEST_URI'];
         $this->_preText = '(' . $timestamp . ') ' . $requestFile . "\n";
         return $this->_preText;
+    }
+
+    /**
+     *
+     * @param string $logFile
+     */
+    public function setLogFile($logFile) {
+        $this->_filename = $this->checkLogFile($logFile);
     }
 
     /**
@@ -116,17 +126,18 @@ Class Log implements Output {
             $prefix = $this->_debugText . ": ";
         }else
             $prefix = "";
-
-        ob_start();
-        echo "\n";
-        echo $this->_getPreText();
-        echo $prefix;
-        $this->_writer->$writeOut($this->_debugVar);
-        echo "\n\n";
-        $result = ob_get_clean();
-        $fp = @file_put_contents($this->_filename, $result, FILE_APPEND);
-        if ($fp === FALSE) {
-            echo $this->_filename . ' is not writable';
+        if($this->_filename) {
+            ob_start();
+            echo "\n";
+            echo $this->_getPreText();
+            echo $prefix;
+            $this->_writer->$writeOut($this->_debugVar);
+            echo "\n\n";
+            $result = ob_get_clean();
+            $fp = @file_put_contents($this->_filename, $result, FILE_APPEND);
+            if ($fp === FALSE) {
+                echo $this->_filename . ' is not writable';
+            }
         }
     }
 
@@ -152,19 +163,53 @@ Class Log implements Output {
         }else
             $prefix = "";
 
-        ob_start();
-        echo "\n";
-        echo $this->_getPreText();
-        echo $prefix;
-        $this->_writer->$writeOut($this->_debugVar);
-        echo "\n";
-        $result = ob_get_clean();
-        $fp = @file_put_contents($this->_filename, $result, FILE_APPEND);
-        if ($fp === FALSE) {
-            echo $this->_filename . ' is not writable';
+        if($this->_filename) {
+            ob_start();
+            echo "\n";
+            echo $this->_getPreText();
+            echo $prefix;
+            $this->_writer->$writeOut($this->_debugVar);
+            echo "\n";
+            $result = ob_get_clean();
+            $fp = @file_put_contents($this->_filename, $result, FILE_APPEND);
+            if ($fp === FALSE) {
+                echo $this->_filename . ' is not writable';
+            }
         }
     }
 
+
+    /**
+     * Checks if logfile is correct and writable
+     *
+     * @param string $logFile
+     * @return bool|string
+     */
+    private function checkLogFile($logFile) {
+
+        $basename = basename($logFile);
+        $dirname = dirname($logFile);
+        if (!is_dir($dirname)){
+            $msg = "$dirname is not a valid directory!";
+            error_log( $msg);
+            return false;
+        }
+        if (!is_writable($dirname)){
+            error_log ("$dirname is not writable!");
+            return false;
+        }
+        return $dirname . DIRECTORY_SEPARATOR . $this->cleanFilenameString($basename);
+    }
+    /**
+     * Sanitizing the filename string
+     * Allows only multibyte word, whitespace, number and the characters -_~,;[]().
+     *
+     * @param string $filenameString
+     * @return false|string
+     */
+    private function cleanFilenameString($filenameString) {
+        return mb_ereg_replace("([^\w\s\d\-_~,;\[\]\(\).])", '', $filenameString);
+    }
 }
 
 ?>
